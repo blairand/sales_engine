@@ -10,8 +10,9 @@ class CustomerLoaderTest < MiniTest::Unit::TestCase
     assert_kind_of CustomerLoader, customer_loader
   end
 
-  def test_it_loads_the_customers	
-  	output = CustomerLoader.from_csv("./data/customers.csv")
+  def test_it_loads_the_csv
+    output = CSV.open("./data/customers.csv", headers: true, header_converters: :symbol)
   	assert_equal 1000, output.count
   end
+
 end

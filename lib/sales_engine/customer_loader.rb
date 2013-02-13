@@ -8,8 +8,6 @@ class CustomerLoader
 		output.each do |row|
       Customer.add(Customer.new(row))
 		end
-
-    
 	end
 
 

@@ -10,3 +10,5 @@ end
 
 SalesEngine.startup
 
+puts Customer.all
+puts Customer.all.first.first_name
