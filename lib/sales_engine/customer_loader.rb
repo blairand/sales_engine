@@ -9,7 +9,7 @@ class CustomerLoader
       Customer.add(Customer.new(row))
 		end
 
-    puts Customer.all
+    
 	end
 
 
