@@ -9,7 +9,9 @@ class InvoiceTest < MiniTest::Unit::TestCase
       :id=>1,
       :customer_id=>1,
       :merchant_id=>1,
-      :status=>'shipped'    
+      :status=>'shipped',
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"    
       )
     assert_kind_of Invoice, invoice
     assert_equal 1, invoice.id
@@ -21,14 +23,18 @@ class InvoiceTest < MiniTest::Unit::TestCase
       :id=>1,
       :customer_id=>1,
       :merchant_id=>1,
-      :status=>'shipped'
+      :status=>'shipped',
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"
       ))
 
      @invoices << Invoice.add(Invoice.new(
       :id=>2,
       :customer_id=>1,
       :merchant_id=>1,
-      :status=>'shipped'
+      :status=>'shipped',
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"
       ))
     assert_equal 2, @invoices.count
   end

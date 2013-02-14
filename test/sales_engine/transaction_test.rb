@@ -5,7 +5,12 @@ require './lib/sales_engine/transaction'
 class TransactionTest < MiniTest::Unit::TestCase
   
   def test_it_exists
-    transaction = Transaction.new(:invoice_id=> 6000, :id => 1)
+    transaction = Transaction.new(
+      :invoice_id=> 6000, 
+      :id => 1,
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"
+      )
     assert_kind_of Transaction, transaction
     assert_equal 6000, transaction.invoice_id
   end
@@ -16,13 +21,17 @@ class TransactionTest < MiniTest::Unit::TestCase
       :invoice_id => 6000,
       :id         => 1,
       :credit_card_number => 9876543209876543,
-      :result => "failed"))
+      :result => "failed",
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"))
 
     @transaction << Transaction.add(Transaction.new(
       :invoice_id => 6001,
       :id         => 2,
       :credit_card_number => 9876543209876590,
-      :result => "failed"))
+      :result => "failed",
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"))
     assert_equal 2, @transaction.count
   end
 

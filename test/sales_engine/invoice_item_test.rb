@@ -10,7 +10,9 @@ class InvoiceItemTest < MiniTest::Unit::TestCase
       :item_id=>1,
       :invoice_id=>1,
       :quantity=>1,
-      :unit_price=>6543
+      :unit_price=>6543,
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"
       )
     assert_kind_of InvoiceItem, invoice_item
     assert_equal 1, invoice_item.id
@@ -23,7 +25,9 @@ class InvoiceItemTest < MiniTest::Unit::TestCase
       :id         => 1,
       :invoice_id  => 1,
       :quantity => 3,
-      :unit_price => 7654
+      :unit_price => 7654,
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"
       ))
 
      @invoice_items << InvoiceItem.add(InvoiceItem.new(
@@ -31,7 +35,9 @@ class InvoiceItemTest < MiniTest::Unit::TestCase
       :id         => 2,
       :invoice_id  => 2,
       :quantity => 3,
-      :unit_price => 7654
+      :unit_price => 7654,
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"
       ))
     assert_equal 2, @invoice_items.count
   end

@@ -5,7 +5,11 @@ require './lib/sales_engine/item'
 class ItemTest < MiniTest::Unit::TestCase
   
   def test_it_exists
-    item = Item.new(:name=> "ABC", :id => 1)
+    item = Item.new(
+      :name=> "ABC", 
+      :id => 1,
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC")
     assert_kind_of Item, item
     assert_equal "ABC", item.name
   end
@@ -17,14 +21,18 @@ class ItemTest < MiniTest::Unit::TestCase
       :id         => 1,
       :description => "lame",
       :unit_price => 200,
-      :merchant_id => 1))
+      :merchant_id => 1,
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"))
 
     @item << Item.add(Item.new(
        :name => "Blair",
       :id         => 2,
       :description => "cool",
       :unit_price => 400,
-      :merchant_id => 4))
+      :merchant_id => 4,
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"))
     assert_equal 2, @item.count
   end
 

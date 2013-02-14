@@ -5,7 +5,13 @@ require './lib/sales_engine/customer'
 class CustomerTest < MiniTest::Unit::TestCase
   
   def test_it_exists
-    customer = Customer.new(:first_name=> "Aimee", :id => 1, :last_name=>"Maher")
+    customer = Customer.new(
+      :first_name=> "Aimee", 
+      :id => 1, 
+      :last_name=>"Maher", 
+      :created_at=>"2012-03-27 14:54:09 UTC", 
+      :updated_at=>"2012-03-27 14:54:09 UTC")
+    
     assert_kind_of Customer, customer
     assert_equal "Maher", customer.last_name
   end
@@ -15,12 +21,16 @@ class CustomerTest < MiniTest::Unit::TestCase
     @customer << Customer.add(Customer.new(
       :first_name => "Aimee",
       :id         => 1,
-      :last_name  => "Maher"))
+      :last_name  => "Maher",
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"))
 
     @customer << Customer.add(Customer.new(
       :first_name => "blair",
       :id         => 2,
-      :last_name  => "anderson"))
+      :last_name  => "anderson",
+      :created_at=>"2012-03-27 14:54:09 UTC",
+      :updated_at=>"2012-03-27 14:54:09 UTC"))
     assert_equal 2, @customer.count
   end
 
