@@ -2,7 +2,18 @@ require './test/sales_engine/test_helper'
 
 require './lib/sales_engine/invoice'
 
+require './lib/sales_engine/invoice_loader'
+
 class InvoiceTest < MiniTest::Unit::TestCase
+
+  def setup
+    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
+  end
+
+  def teardown
+    a = Array.new
+    Invoice.add(a)
+  end
   
   def test_it_exists
     invoice = Invoice.new(

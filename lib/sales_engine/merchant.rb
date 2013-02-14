@@ -15,4 +15,9 @@ class Merchant
   def self.all
     @merchants
   end
+
+  def self.random
+    all.sample
+  end
+
 end

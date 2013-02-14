@@ -19,6 +19,29 @@ class InvoiceItem
     @invoice_items
   end
 
+  def self.find_by_id(value)
+    all.find {|record| record.id == value}
+  end
+
+  def self.find_by_created_at(value)
+    all.find {|record| record.created_at == value}
+  end
+
+  def self.find_by_updated_at(value)
+    all.find {|record| record.updated_at == value}
+  end
+
+  def self.find_by_invoice_id(value)
+    all.find {|record| record.invoice_id == value}
+  end
+
+  def self.find_by_quantity(value)
+    all.find {|record| record.quantity == value}
+  end
+
+  def self.find_by_unit_price(value)
+    all.find {|record| record.unit_price == value}
+  end
   
 end
 

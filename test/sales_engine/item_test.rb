@@ -2,7 +2,18 @@ require './test/sales_engine/test_helper'
 
 require './lib/sales_engine/item'
 
+require './lib/sales_engine/item_loader'
+
 class ItemTest < MiniTest::Unit::TestCase
+
+  def setup
+    ItemLoader.from_csv("./test/data/short_items.csv")
+  end
+
+  def teardown
+    a = Array.new
+    Item.add(a)
+  end
   
   def test_it_exists
     item = Item.new(

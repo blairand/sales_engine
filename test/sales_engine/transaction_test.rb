@@ -2,7 +2,18 @@ require './test/sales_engine/test_helper'
 
 require './lib/sales_engine/transaction'
 
+require './lib/sales_engine/transaction_loader'
+
 class TransactionTest < MiniTest::Unit::TestCase
+
+  def setup
+    TransactionLoader.from_csv("./test/data/short_transactions.csv")
+  end
+
+  def teardown
+    a = Array.new
+    Transaction.add(a)
+  end
   
   def test_it_exists
     transaction = Transaction.new(

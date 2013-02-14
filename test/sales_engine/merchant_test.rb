@@ -1,9 +1,18 @@
 require './test/sales_engine/test_helper'
 
 require './lib/sales_engine/merchant'
+require './lib/sales_engine/merchant_loader'
 
 class MerchantTest < MiniTest::Unit::TestCase
-  
+  def setup
+    MerchantLoader.from_csv("./test/data/short_merchants.csv")
+  end
+
+  def teardown
+    a = Array.new
+    Merchant.add(a)
+  end
+
   def test_it_exists
     merchant = Merchant.new(
       :name=> "ABC", 
@@ -29,6 +38,12 @@ class MerchantTest < MiniTest::Unit::TestCase
       :created_at=>"2012-03-27 14:54:09 UTC",
       :updated_at=>"2012-03-27 14:54:09 UTC"))
     assert_equal 2, @merchant.count
+  end
+
+  def test_it_returns_random_merchant
+    a = Merchant.random
+    b = Merchant.random
+    refute_equal a.id, b.id
   end
 
 
