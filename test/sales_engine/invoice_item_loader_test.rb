@@ -9,9 +9,9 @@ class InvoiceItemLoaderTest < MiniTest::Unit::TestCase
     assert_kind_of InvoiceItemLoader, invoice_item_loader
   end
 
-  def test_it_loads_the_csv
-    output = CSV.open("./data/invoice_items.csv", headers: true, header_converters: :symbol)
-    assert_equal 21687, output.count
+  def test_the_loader_imports_csv_records_correctly
+    InvoiceItemLoader.from_csv
+    assert_equal 21687, InvoiceItem.all.count
   end
 
 end

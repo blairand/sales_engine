@@ -8,9 +8,8 @@ class Merchant
     @updated_at = input[:updated_at]
   end
 
-  def self.add(merchant)
-    @merchants ||= []
-    @merchants << merchant
+  def self.add(merchants)
+    @merchants = merchants
   end
 
   def self.all

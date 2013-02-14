@@ -9,9 +9,9 @@ class MerchantLoaderTest < MiniTest::Unit::TestCase
     assert_kind_of MerchantLoader, merchant_loader
   end
 
-  def test_it_loads_the_csv
-    output = CSV.open("./data/merchants.csv", headers: true, header_converters: :symbol)
-    assert_equal 100, output.count
+   def test_the_loader_imports_csv_records_correctly
+    MerchantLoader.from_csv
+    assert_equal 100, Merchant.all.count
   end
 
 end

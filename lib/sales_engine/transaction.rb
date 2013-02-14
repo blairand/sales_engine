@@ -10,9 +10,8 @@ class Transaction
     @updated_at = input[:updated_at]
   end
 
-  def self.add(transaction)
-    @transaction ||= []
-    @transaction << transaction
+  def self.add(transactions)
+    @transaction = transactions
   end
 
   def self.all

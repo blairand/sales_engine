@@ -1,5 +1,4 @@
 require './test/sales_engine/test_helper'
-
 require './lib/sales_engine/transaction_loader'
 
 class TransactionLoaderTest < MiniTest::Unit::TestCase
@@ -9,9 +8,9 @@ class TransactionLoaderTest < MiniTest::Unit::TestCase
     assert_kind_of TransactionLoader, transaction_loader
   end
 
-  def test_it_loads_the_csv
-    output = CSV.open("./data/transactions.csv", headers: true, header_converters: :symbol)
-    assert_equal 5595, output.count
+  def test_the_loader_imports_csv_records_correctly
+    TransactionLoader.from_csv
+    assert_equal 5595, Transaction.all.count
   end
 
 end

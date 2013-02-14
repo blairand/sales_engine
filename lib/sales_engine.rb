@@ -28,4 +28,4 @@ SalesEngine.startup
 # puts Transaction.all.first.inspect+"\n"
 # puts Invoice.all.first.inspect+"\n"
 
-puts Customer.find_all_by_last_name("Cornelia")
+# puts Customer.find_all_by_last_name("Cornelia")

@@ -12,8 +12,7 @@ class InvoiceItem
   end
 
   def self.add(invoice_items)
-    @invoice_items ||= []
-    @invoice_items << invoice_items
+    @invoice_items = invoice_items
   end
 
   def self.all
