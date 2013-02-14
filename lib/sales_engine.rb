@@ -13,7 +13,6 @@ class SalesEngine
     MerchantLoader.from_csv
     ItemLoader.from_csv
     InvoiceItemLoader.from_csv
-    MerchantLoader.from_csv
     TransactionLoader.from_csv
     InvoiceLoader.from_csv
   end
@@ -22,6 +21,11 @@ end
 
 SalesEngine.startup
 
-puts Invoice.all
-puts Invoice.all.first.id
+# puts Customer.all.first.inspect+"\n"
+# puts Merchant.all.first.inspect+"\n"
+# puts Item.all.first.inspect+"\n"
+# puts InvoiceItem.all.first.inspect+"\n"
+# puts Transaction.all.first.inspect+"\n"
+# puts Invoice.all.first.inspect+"\n"
 
+puts Customer.find_all_by_last_name("Cornelia")

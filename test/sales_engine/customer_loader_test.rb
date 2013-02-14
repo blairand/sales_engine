@@ -14,4 +14,9 @@ class CustomerLoaderTest < MiniTest::Unit::TestCase
   	assert_equal 1000, output.count
   end
 
+  def test_the_loader_imports_csv_records_correctly
+    CustomerLoader.from_csv
+    assert_equal 1000, Customer.all.count
+  end
+
 end

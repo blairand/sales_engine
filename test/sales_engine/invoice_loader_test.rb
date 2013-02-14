@@ -14,4 +14,10 @@ class InvoiceLoaderTest < MiniTest::Unit::TestCase
     assert_equal 4843, output.count
   end
 
+  def invoices_are_loaded
+    InvoiceLoader.from_csv
+    assert_equal 4843, Invoice.all.count
+
+  end
+
 end
