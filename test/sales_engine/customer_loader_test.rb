@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require './test/sales_engine/test_helper'
 
 require './lib/sales_engine/customer_loader'
 

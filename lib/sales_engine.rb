@@ -4,6 +4,7 @@ require './lib/sales_engine/item_loader'
 require './lib/sales_engine/invoice_item_loader'
 require './lib/sales_engine/merchant_loader'
 require './lib/sales_engine/transaction_loader'
+require './lib/sales_engine/invoice_loader'
 
 class SalesEngine
 
@@ -14,12 +15,13 @@ class SalesEngine
     InvoiceItemLoader.from_csv
     MerchantLoader.from_csv
     TransactionLoader.from_csv
+    InvoiceLoader.from_csv
   end
 
 end
 
 SalesEngine.startup
 
-puts Transaction.all
-puts Transaction.all.first.credit_card_number
+puts Invoice.all
+puts Invoice.all.first.id
 

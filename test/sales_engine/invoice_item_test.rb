@@ -1,5 +1,5 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require './test/sales_engine/test_helper'
+
 require './lib/sales_engine/invoice_item'
 
 class InvoiceItemTest < MiniTest::Unit::TestCase
