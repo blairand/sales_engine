@@ -48,5 +48,35 @@ class InvoiceTest < MiniTest::Unit::TestCase
       :updated_at=>"2012-03-27 14:54:09 UTC"
       ))
     assert_equal 2, @invoices.count
+  end  
+
+  def test_it_finds_by_id
+    a = Invoice.find_by_id("1")
+    assert_equal "1", a.id
+  end
+
+  def test_it_finds_by_created_at
+    a = Invoice.find_by_created_at("2012-03-25 09:54:09 UTC")
+    assert_equal "2012-03-25 09:54:09 UTC", a.created_at
+  end
+
+  def test_it_finds_by_updated_at
+    a = Invoice.find_by_updated_at("2012-03-25 09:54:09 UTC")
+    assert_equal "2012-03-25 09:54:09 UTC", a.updated_at
+  end
+
+  def test_it_finds_by_customer_id
+    a = Invoice.find_by_customer_id("1")
+    assert_equal "1", a.customer_id
+  end
+
+  def test_it_finds_by_status
+    b = Invoice.find_by_status("shipped")
+    assert_equal "shipped", b.status
+  end
+
+  def test_it_find_by_merchant_id
+    c = Invoice.find_by_merchant_id("26")
+    assert_equal "26", c.merchant_id
   end
 end

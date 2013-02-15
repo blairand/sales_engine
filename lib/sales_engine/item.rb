@@ -19,7 +19,6 @@ class Item
   def self.all
     @items
   end
-
   def self.find_by_id(value)
     all.find {|record| record.id == value}
   end
