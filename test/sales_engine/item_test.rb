@@ -76,5 +76,10 @@ class ItemTest < MiniTest::Unit::TestCase
     c = Item.find_by_merchant_id("1")
     assert_equal "1", c.merchant_id
   end
+  
+  def test_it_find_all_by_merchant_id
+    c = Item.find_all_by_merchant_id("1")
+    assert_equal 9, c.count
+  end
 
 end

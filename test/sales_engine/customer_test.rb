@@ -69,7 +69,7 @@ class CustomerTest < MiniTest::Unit::TestCase
     assert_equal "Nader", b.last_name
   end
 
-    def test_it_find_all_by_first_name
+  def test_it_find_all_by_first_name
     c = Customer.find_all_by_first_name("Loyal")
     assert_equal 2, c.count
   end

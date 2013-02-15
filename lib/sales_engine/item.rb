@@ -47,6 +47,9 @@ class Item
     all.find {|record| record.updated_at == value}
   end
 
+  def self.find_all_by_merchant_id(value)
+    all.select {|record| record.merchant_id == value}
+  end
 
 end
 
