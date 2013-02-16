@@ -75,8 +75,20 @@ class Invoice
     Transaction.find_all_by_invoice_id(@id)
   end
 
+  def success?
+    transactions.any?{|transaction| transaction.success?}
+  end
+
+  def pending?
+    transactions.any?{|transaction| !transaction.success?}
+  end
+
   def invoice_items
     InvoiceItem.find_all_by_invoice_id(@id)
+  end
+
+  def invoice_revenue
+    invoice_items.collect{|invoice_item| invoice_item.revenue}.inject(:+)
   end
 
   def customer

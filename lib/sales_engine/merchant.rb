@@ -58,4 +58,20 @@ class Merchant
     Invoice.find_all_by_merchant_id(@id)
   end
 
+  def self.most_revenue(number)
+    #find all invoices for each merchant
+    #invoice, sum the revenue of each invoice item 
+    #invoice item, find the revenue
+  end
+
+  def revenue
+    successful_invoices = []
+    invoices.each do |invoice|
+      successful_invoices.push(invoice) if invoice.success?
+    end
+    successful_invoices.collect{|invoice| invoice.invoice_revenue}.inject(:+)
+  end
+
+
+
 end

@@ -68,6 +68,10 @@ class Transaction
     all.find_all {|record| record.updated_at == input}
   end
 
+  def success?
+    @result == "success"
+  end
+
   def invoice
     Invoice.find_by_id(@invoice_id)
   end

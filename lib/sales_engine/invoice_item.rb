@@ -85,5 +85,10 @@ class InvoiceItem
   def item
     Item.find_by_id(@item_id)
   end
+
+  def revenue
+    (@quantity.to_i * @unit_price.to_i) / 100.00
+  end
+
 end
 
