@@ -1,4 +1,5 @@
 require './test/sales_engine/test_helper'
+
 require './lib/sales_engine/item'
 require './lib/sales_engine/merchant'
 require './lib/sales_engine/merchant_loader'
