@@ -1,3 +1,6 @@
+require './lib/sales_engine/invoice'
+require './lib/sales_engine/item'
+
 class InvoiceItem  
   attr_reader :id, :item_id, :invoice_id, :quantity, :unit_price, :created_at, :updated_at
 
@@ -74,6 +77,13 @@ class InvoiceItem
   def self.find_all_by_updated_at(value)
     all.find_all {|record| record.updated_at == value}
   end
-  
+
+  def invoice
+    Invoice.find_by_id(@invoice_id)
+  end
+
+  def item
+    Item.find_by_id(@item_id)
+  end
 end
 
