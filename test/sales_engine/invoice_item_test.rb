@@ -123,7 +123,7 @@ class InvoiceItemTest < MiniTest::Unit::TestCase
   end
 
   def test_returns_item
-    skip ("broken test do not know why")
+    skip("broken test do not know why")
   end
 
 end

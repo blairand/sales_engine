@@ -83,9 +83,9 @@ class Invoice
     Customer.find_by_id(@customer_id)
   end
 
-  # def items
-  #   Item.invoice_items(@id)
-  # end
+  def items
+    invoice_items.collect {|invoice_item| invoice_item.item}
+  end
 
 end
 
