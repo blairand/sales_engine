@@ -54,9 +54,19 @@ class CustomerTest < MiniTest::Unit::TestCase
     assert_equal "2012-03-27 14:54:09 UTC", a.created_at
   end
 
+  def test_it_finds_all_by_created_at
+    a = Customer.find_all_by_created_at("2012-03-27 14:54:10 UTC")
+    assert_equal 6, a.count
+  end
+
   def test_it_finds_by_updated_at
     a = Customer.find_by_updated_at("2012-03-27 14:54:09 UTC")
     assert_equal "2012-03-27 14:54:09 UTC", a.updated_at
+  end
+
+  def test_it_finds_all_by_updated_at
+    a = Customer.find_all_by_updated_at("2012-03-27 14:54:11 UTC")
+    assert_equal 3, a.count
   end
 
   def test_it_finds_by_first_name
@@ -64,14 +74,14 @@ class CustomerTest < MiniTest::Unit::TestCase
     assert_equal "Dejon", a.first_name
   end
 
-  def test_it_finds_by_last_name
-    b = Customer.find_by_last_name("Nader")
-    assert_equal "Nader", b.last_name
-  end
-
   def test_it_find_all_by_first_name
     c = Customer.find_all_by_first_name("Loyal")
     assert_equal 2, c.count
+  end
+
+  def test_it_finds_by_last_name
+    b = Customer.find_by_last_name("Nader")
+    assert_equal "Nader", b.last_name
   end
 
   def test_it_find_all_by_last_name
