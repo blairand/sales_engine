@@ -1,3 +1,5 @@
+require './lib/sales_engine/item'
+
 class Merchant  
   attr_reader :id, :name, :created_at, :updated_at
 
@@ -46,6 +48,14 @@ class Merchant
 
   def self.find_all_by_updated_at(input)
     all.find_all {|record| record.updated_at == input}
+  end
+
+  def items
+    Item.find_all_by_merchant_id(self.id)
+  end
+
+  def invoices 
+    Invoice.find_all_by_merchant_id(@id)
   end
 
 end
