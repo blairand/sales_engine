@@ -21,4 +21,4 @@ end
 
 SalesEngine.startup
 
-puts InvoiceItem.find_all_by_item_id("978")
+puts Customer.find_all_by_first_name("Glenda")
