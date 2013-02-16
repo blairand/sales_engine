@@ -46,5 +46,54 @@ class TransactionTest < MiniTest::Unit::TestCase
     assert_equal 2, @transaction.count
   end
 
+  def test_it_finds_by_invoice_id
+    a = Transaction.find_by_invoice_id("1")
+    assert_equal "1", a.invoice_id
+  end
+
+  def test_it_finds_all_by_invoice_id
+    a = Merchant.find_all_by_invoice_id("10")
+    assert_equal 2, a.count
+  end
+
+  def test_it_finds_by_id
+    c = Transaction.find_all_by_id("1")
+    assert_equal "1", c.id
+  end
+
+  def test_it_finds_by_credit_card_number
+    c = Transaction.find_by_credit_card_number("4654405418249632")
+    assert_equal "4654405418249632", c.credit_card_number
+  end
+
+  def test_it_finds_all_by_credit_card_number
+    c = Transaction.find_all_by_credit_card_number("4140149827486249")
+    assert_equal 2, c.count
+  end
+
+  def test_it_finds_by_result
+    c = Transaction.find_all_by_result("success")
+    assert_equal 10, c.count
+  end
+
+  def test_it_finds_by_created_at
+    a = Transaction.find_by_created_at("2012-03-27 14:54:10 UTC")
+    assert_equal "2012-03-27 14:54:10 UTC", a.created_at
+  end
+
+  def test_it_finds_all_by_created_at
+    a = Transaction.find_all_by_created_at("2012-03-27 14:54:10 UTC")
+    assert_equal 10, a.count
+  end
+
+  def test_it_finds_by_updated_at
+    a = Transaction.find_by_updated_at("2012-03-27 14:54:10 UTC")
+    assert_equal "2012-03-27 14:54:10 UTC", a.updated_at
+  end
+
+  def test_it_finds_all_by_updated_at
+    a = Transaction.find_all_by_updated_at("2012-03-27 14:54:10 UTC")
+    assert_equal 10, a.count
+  end
 
 end

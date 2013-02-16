@@ -47,4 +47,40 @@ class MerchantTest < MiniTest::Unit::TestCase
   end
 
 
+  def test_it_finds_by_name
+    a = Merchant.find_by_name("Schroeder-Jerde")
+    assert_equal "Schroeder-Jerde", a.name
+  end
+
+  def test_it_find_all_by_name
+    c = Merchant.find_all_by_name("Williamson Group")
+    assert_equal 2, c.count
+  end
+
+  def test_it_finds_by_id
+    a = Merchant.find_by_id("1")
+    assert_equal "1", a.id
+  end
+
+  def test_it_finds_by_created_at
+    a = Merchant.find_by_created_at("2012-03-27 14:53:59 UTC")
+    assert_equal "2012-03-27 14:53:59 UTC", a.created_at
+  end
+
+  def test_it_finds_all_by_created_at
+    a = Merchant.find_all_by_created_at("2012-03-27 14:53:59 UTC")
+    assert_equal 8, a.count
+  end
+
+  def test_it_finds_by_updated_at
+    a = Merchant.find_by_updated_at("2012-03-27 14:53:59 UTC")
+    assert_equal "2012-03-27 14:53:59 UTC", a.updated_at
+  end
+
+  def test_it_finds_all_by_updated_at
+    a = Merchant.find_all_by_updated_at("2012-03-27 14:53:59 UTC")
+    assert_equal 8, a.count
+  end
+
+
 end
