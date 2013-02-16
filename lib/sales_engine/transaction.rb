@@ -1,3 +1,5 @@
+# require './lib/sales_engine/invoice'
+
 class Transaction  
   attr_reader :id, :invoice_id, :credit_card_number, :result, :created_at, :updated_at
 
@@ -64,6 +66,10 @@ class Transaction
 
   def self.find_all_by_updated_at(input)
     all.find_all {|record| record.updated_at == input}
+  end
+
+  def invoice
+    Invoice.find_by_id(@invoice_id)
   end
 
 end
