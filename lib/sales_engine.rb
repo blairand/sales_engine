@@ -21,4 +21,4 @@ end
 
 SalesEngine.startup
 
-puts Customer.find_all_by_first_name("Glenda")
+puts Invoice.find_by_merchant_id("5")

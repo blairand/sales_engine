@@ -84,7 +84,7 @@ class InvoiceItemTest < MiniTest::Unit::TestCase
   end
 
   def test_it_finds_all_by_quantity
-    b = InvoiceItem.find_by_quantity("6")
+    b = InvoiceItem.find_all_by_quantity("6")
     assert_equal 3, b.count
   end
 

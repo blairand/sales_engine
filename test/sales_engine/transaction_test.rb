@@ -52,12 +52,12 @@ class TransactionTest < MiniTest::Unit::TestCase
   end
 
   def test_it_finds_all_by_invoice_id
-    a = Merchant.find_all_by_invoice_id("10")
+    a = Transaction.find_all_by_invoice_id("10")
     assert_equal 2, a.count
   end
 
   def test_it_finds_by_id
-    c = Transaction.find_all_by_id("1")
+    c = Transaction.find_by_id("1")
     assert_equal "1", c.id
   end
 
@@ -83,7 +83,7 @@ class TransactionTest < MiniTest::Unit::TestCase
 
   def test_it_finds_all_by_created_at
     a = Transaction.find_all_by_created_at("2012-03-27 14:54:10 UTC")
-    assert_equal 10, a.count
+    assert_equal 8, a.count
   end
 
   def test_it_finds_by_updated_at
@@ -93,7 +93,7 @@ class TransactionTest < MiniTest::Unit::TestCase
 
   def test_it_finds_all_by_updated_at
     a = Transaction.find_all_by_updated_at("2012-03-27 14:54:10 UTC")
-    assert_equal 10, a.count
+    assert_equal 8, a.count
   end
 
 end

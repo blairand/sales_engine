@@ -45,7 +45,7 @@ class Customer
     all.find{|record| record.created_at == value}
   end
 
-  def self.find_by_created_at(value)
+  def self.find_all_by_created_at(value)
     all.find_all{|record| record.created_at == value}
   end
 
@@ -53,7 +53,7 @@ class Customer
     all.find{|record| record.updated_at == value}
   end
 
-  def self.find_by_updated_at(value)
+  def self.find_all_by_updated_at(value)
     all.find_all{|record| record.updated_at == value}
   end
 

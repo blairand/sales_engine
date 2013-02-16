@@ -41,7 +41,7 @@ class Invoice
   end
 
   def self.find_all_by_merchant_id(value)
-    all.find_all {|record| record.merchant_id == value}
+    all.select {|record| record.merchant_id == value}
   end
 
   def self.find_by_status(value)

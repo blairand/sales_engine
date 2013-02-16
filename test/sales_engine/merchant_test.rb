@@ -69,7 +69,7 @@ class MerchantTest < MiniTest::Unit::TestCase
 
   def test_it_finds_all_by_created_at
     a = Merchant.find_all_by_created_at("2012-03-27 14:53:59 UTC")
-    assert_equal 8, a.count
+    assert_equal 9, a.count
   end
 
   def test_it_finds_by_updated_at
