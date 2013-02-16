@@ -24,10 +24,6 @@ class Item
     all.find {|record| record.id == value}
   end
 
-  def self.find_by_id(value)
-    all.find_all {|record| record.id == value}
-  end
-
   def self.find_by_name(value)
     all.find {|record| record.name == value}
   end
