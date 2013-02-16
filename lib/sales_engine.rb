@@ -21,12 +21,5 @@ end
 
 SalesEngine.startup
 
-# puts Customer.all.first.inspect+"\n"
-# puts Merchant.all.first.inspect+"\n"
-# puts Item.all.first.inspect+"\n"
-# puts InvoiceItem.all.first.inspect+"\n"
-# puts Transaction.all.first.inspect+"\n"
-# puts Invoice.all.first.inspect+"\n"
-
-# # puts Customer.find_all_by_last_name("Cornelia")
-#  Merchant.random
+puts Item.find_all_by_merchant_id("1")
+puts Customer.find_all_by_first_name("Glenda")

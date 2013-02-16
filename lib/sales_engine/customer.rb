@@ -17,33 +17,44 @@ class Customer
     @customers
   end
 
+  def self.find_by_id(value)
+    all.find {|record| record.id == value}
+  end
+
+  def self.find_all_by_id(value)
+    all.find_all {|record| record.id == value}
+  end
+
   def self.find_by_first_name(value)
     all.find {|record| record.first_name == value}
+  end
+
+  def self.find_all_by_first_name(value)
+    all.find_all {|record| record.first_name == value}
   end
 
   def self.find_by_last_name(value)
     all.find {|record| record.last_name == value}
   end
 
-
-  def self.find_all_by_first_name(value)
-    all.select {|record| record.first_name == value}
-  end
-
   def self.find_all_by_last_name(value)
-    all.select {|record| record.last_name == value}
+    all.find_all {|record| record.last_name == value}
   end 
-
-  def self.find_by_id(value)
-    all.find{|record| record.id == value}
-  end
 
   def self.find_by_created_at(value)
     all.find{|record| record.created_at == value}
   end
 
+  def self.find_by_created_at(value)
+    all.find_all{|record| record.created_at == value}
+  end
+
   def self.find_by_updated_at(value)
     all.find{|record| record.updated_at == value}
+  end
+
+  def self.find_by_updated_at(value)
+    all.find_all{|record| record.updated_at == value}
   end
 
   # def self.find_all_by_attribute(attribute,value)
