@@ -21,26 +21,54 @@ class InvoiceItem
 
   def self.find_by_id(value)
     all.find {|record| record.id == value}
-  end
+  end 
 
-  def self.find_by_created_at(value)
-    all.find {|record| record.created_at == value}
-  end
+  def self.find_by_item_id(value)
+    all.find {|record| record.item_id == value}
+  end 
 
-  def self.find_by_updated_at(value)
-    all.find {|record| record.updated_at == value}
+  def self.find_all_by_item_id(value)
+    all.find_all {|record| record.item_id == value}
   end
 
   def self.find_by_invoice_id(value)
     all.find {|record| record.invoice_id == value}
   end
 
+  def self.find_all_by_invoice_id(value)
+    all.find_all {|record| record.invoice_id == value}
+  end
+
   def self.find_by_quantity(value)
     all.find {|record| record.quantity == value}
   end
 
+  def self.find_all_by_quantity(value)
+    all.find_all {|record| record.quantity == value}
+  end
+
   def self.find_by_unit_price(value)
     all.find {|record| record.unit_price == value}
+  end
+
+  def self.find_all_by_unit_price(value)
+    all.find_all {|record| record.unit_price == value}
+  end
+
+  def self.find_by_created_at(value)
+    all.find {|record| record.created_at == value}
+  end
+
+  def self.find_all_by_created_at(value)
+    all.find_all {|record| record.created_at == value}
+  end
+
+  def self.find_by_updated_at(value)
+    all.find {|record| record.updated_at == value}
+  end
+
+  def self.find_all_by_updated_at(value)
+    all.find_all {|record| record.updated_at == value}
   end
   
 end
