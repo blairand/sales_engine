@@ -105,4 +105,13 @@ class InvoiceTest < MiniTest::Unit::TestCase
   #   puts a
   # end
 
+  def test_that_it_returns_a_transaction
+  end
+
+  def test_that_it_returns_invoice_items
+  end
+
+  def test_that_it_returns_customers
+  end
+
 end
