@@ -21,10 +21,6 @@ class Customer
     all.find {|record| record.id == value}
   end
 
-  def self.find_all_by_id(value)
-    all.find_all {|record| record.id == value}
-  end
-
   def self.find_by_first_name(value)
     all.find {|record| record.first_name == value}
   end

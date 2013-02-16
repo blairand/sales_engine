@@ -28,20 +28,41 @@ class Invoice
     all.find {|record| record.customer_id == value}
   end
 
-  def self.find_by_status(value)
-    all.find {|record| record.status == value}
+  def self.find_all_by_customer_id(value)
+    all.find_all {|record| record.customer_id == value}
   end
 
   def self.find_by_merchant_id(value)
     all.find {|record| record.merchant_id == value}
   end
 
+  def self.find_all_by_merchant_id(value)
+    all.find_all {|record| record.merchant_id == value}
+  end
+
+  def self.find_by_status(value)
+    all.find {|record| record.status == value}
+  end
+
+  def self.find_all_by_status(value)
+    all.find_all {|record| record.status == value}
+  end
+
   def self.find_by_created_at(value)
     all.find {|record| record.created_at == value}
+  end
+
+  def self.find_all_by_created_at(value)
+    all.find_all {|record| record.created_at == value}
   end
 
   def self.find_by_updated_at(value)
     all.find {|record| record.updated_at == value}
   end
+
+  def self.find_all_by_updated_at(value)
+    all.find_all {|record| record.updated_at == value}
+  end
+
 end
 
