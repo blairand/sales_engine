@@ -21,7 +21,8 @@ end
 
 SalesEngine.startup
 
-puts Invoice.find_by_id("1").items
+puts Item.find_by_id("1").merchant
+puts Item.find_by_id("1").invoice_items
 # InvoiceItem.find_by_id("1").invoice
 # puts InvoiceItem.find_by_id("1").item
 # puts Invoice.find_by_id("1").invoice_items
