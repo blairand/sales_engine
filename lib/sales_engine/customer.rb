@@ -57,6 +57,10 @@ class Customer
     all.find_all{|record| record.updated_at == value}
   end
 
+  def invoices
+    Invoice.find_all_by_customer_id(@id)
+  end
+
   # def self.find_all_by_attribute(attribute,value)
   #   all.select {|record| record.send(attribute) == value}
   # end
