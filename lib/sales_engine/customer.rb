@@ -17,6 +17,10 @@ class Customer
     @customers
   end
 
+  def self.random
+    all.sample
+  end
+
   def self.find_by_id(value)
     all.find {|record| record.id == value}
   end

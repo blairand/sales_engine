@@ -16,6 +16,10 @@ class Merchant
     @merchants
   end
 
+  def self.random
+    all.sample
+  end
+
   def self.find_by_id(input)
     all.find {|record| record.id == input}
   end
@@ -42,10 +46,6 @@ class Merchant
 
   def self.find_all_by_updated_at(input)
     all.find_all {|record| record.updated_at == input}
-  end
-
-  def self.random
-    all.sample
   end
 
 end
