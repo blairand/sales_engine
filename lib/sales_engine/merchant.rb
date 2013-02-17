@@ -68,14 +68,18 @@ class Merchant
     successful_invoices
   end
 
-  def single_merchant_revenue
+  def revenue
     single_merchant_successful_invoices.collect{|invoice| invoice.invoice_revenue}.inject(:+)
+  end
+
+  def single_merchant_quantity
+    
   end
 
   def self.merchant_revenue
     merchants_revenues = Hash.new(0)
     all.each do |merchant|
-      merchants_revenues[merchant.id] = merchant.single_merchant_revenue
+      merchants_revenues[merchant.id] = merchant.revenue
     end
     merchants_revenues.sort_by{|merchant_id,merchant_revenue| merchant_revenue }.reverse!
   end
