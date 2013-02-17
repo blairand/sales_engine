@@ -6,8 +6,8 @@ class Merchant
   def initialize(input)
     @id = input[:id]
     @name = input[:name]
-    @created_at = input[:created_at]
-    @updated_at = input[:updated_at]
+    @created_at = Date.parse(input[:created_at])
+    @updated_at = Date.parse(input[:updated_at])
   end
 
   def self.add(merchants)
