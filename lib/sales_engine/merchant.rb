@@ -58,22 +58,26 @@ class Merchant
     Invoice.find_all_by_merchant_id(@id)
   end
 
-  def revenue #Refactor this
+  def single_merchant_successful_invoices
     successful_invoices = []
     invoices.each do |invoice|
       if invoice.success? 
         successful_invoices.push(invoice)
       end
     end
-    successful_invoices.collect{|invoice| invoice.invoice_revenue}.inject(:+)
+    successful_invoices
+  end
+
+  def single_merchant_revenue
+    single_merchant_successful_invoices.collect{|invoice| invoice.invoice_revenue}.inject(:+)
   end
 
   def self.merchant_revenue
-    merchant_revenue = Hash.new(0)
+    merchants_revenues = Hash.new(0)
     all.each do |merchant|
-      merchant_revenue[merchant.id] = merchant.revenue
+      merchants_revenues[merchant.id] = merchant.single_merchant_revenue
     end
-    merchant_revenue.sort_by{|k,v| v}.reverse!
+    merchants_revenues.sort_by{|merchant_id,merchant_revenue| merchant_revenue }.reverse!
   end
 
 

@@ -27,4 +27,4 @@ SalesEngine.startup
 # puts InvoiceItem.find_by_id("1").item
 # puts Invoice.find_by_id("13").pending?
 # puts Merchant.find_by_id("1").revenue
-puts Merchant.most_revenue(5)
+puts Merchant.find_by_id("5").single_merchant_revenue
