@@ -20,11 +20,17 @@ class SalesEngine
 end
 
 SalesEngine.startup
+# a = Time.new
+# # puts Item.find_by_id("1").merchant
+# # puts Item.find_by_id("1").invoice_items
+# #puts InvoiceItem.find_by_id("1").revenue
+# # puts InvoiceItem.find_by_id("1").item
+# # puts Invoice.find_by_id("13").pending?
+# #puts Merchant.most_revenue(5)
+# b = Time.new
+# puts b-a
 
-# puts Item.find_by_id("1").merchant
-# puts Item.find_by_id("1").invoice_items
-#puts InvoiceItem.find_by_id("1").revenue
-# puts InvoiceItem.find_by_id("1").item
-# puts Invoice.find_by_id("13").pending?
-# puts Merchant.find_by_id("1").revenue
-puts Merchant.find_by_id("5").single_merchant_revenue
+c = Time.new
+puts Merchant.find_by_id("1").customers_with_pending_invoices
+d = Time.new
+puts d-c

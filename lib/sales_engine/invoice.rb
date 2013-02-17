@@ -88,15 +88,24 @@ class Invoice
   end
 
   def invoice_revenue
-    invoice_items.collect{|invoice_item| invoice_item.revenue}.inject(:+)
+    invoice_items.collect do |invoice_item|
+      invoice_item.revenue
+    end.inject(:+)
   end
+
+  def invoice_unit_quantity
+    invoice_items.collect do |invoice_item|
+      invoice_item.quantity
+    end.inject(:+)
+  end
+
 
   def customer
     Customer.find_by_id(@customer_id)
   end
 
   def items
-    invoice_items.collect {|invoice_item| invoice_item.item}
+    invoice_items.collect{|invoice_item| invoice_item.item}
   end
 
 end

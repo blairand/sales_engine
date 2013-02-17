@@ -90,5 +90,9 @@ class InvoiceItem
     (@quantity.to_i * @unit_price.to_i) / 100.00
   end
 
+  def quantity
+    @quantity.to_i
+  end
+
 end
 

@@ -58,7 +58,7 @@ class Merchant
     Invoice.find_all_by_merchant_id(@id)
   end
 
-  def single_merchant_successful_invoices
+  def single_merchant_invoices
     successful_invoices = []
     invoices.each do |invoice|
       if invoice.success? 
@@ -68,12 +68,33 @@ class Merchant
     successful_invoices
   end
 
-  def revenue
-    single_merchant_successful_invoices.collect{|invoice| invoice.invoice_revenue}.inject(:+)
+  def quantity_sold
+    single_merchant_invoices.collect do |invoice|
+      invoice.invoice_unit_quantity
+    end.inject(:+)
   end
 
-  def single_merchant_quantity
-    
+  def self.merchant_quantity
+    merchant_volumes = Hash.new(0)
+    all.each do |merchant|
+      merchant_volumes[merchant.id] = merchant.quantity_sold
+    end
+    merchant_volumes.sort_by do |id, quantity|
+      quantity
+    end.reverse!
+  end
+
+  def self.most_items(number=1)
+    sorted_list = merchant_quantity
+    sorted_list[0...number].collect do |merchant|
+      find_by_id(merchant[0])
+    end
+  end
+
+  def revenue
+    single_merchant_invoices.collect do |invoice|
+      invoice.invoice_revenue
+    end.inject(:+)
   end
 
   def self.merchant_revenue
@@ -81,9 +102,10 @@ class Merchant
     all.each do |merchant|
       merchants_revenues[merchant.id] = merchant.revenue
     end
-    merchants_revenues.sort_by{|merchant_id,merchant_revenue| merchant_revenue }.reverse!
+    merchants_revenues.sort_by do |id,revenue|
+      revenue
+    end.reverse!
   end
-
 
   def self.most_revenue(number=1)
     sorted_list = merchant_revenue
@@ -92,5 +114,12 @@ class Merchant
     end
   end
 
+  def customers_with_pending_invoices
+    customers = []
+    invoices.each do |invoice|
+      customers.push(invoice.customer) if invoice.pending? 
+    end
+    customers
+  end
 
 end
