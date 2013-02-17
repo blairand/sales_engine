@@ -1,3 +1,5 @@
+#require './lib/sales_engine/merchant'
+
 class Customer  
   attr_reader :id, :first_name, :last_name, :created_at, :updated_at
 
@@ -60,6 +62,37 @@ class Customer
   def invoices
     Invoice.find_all_by_customer_id(@id)
   end
+
+  def merchants_per_customer
+    merchant_hash = Hash.new(0)
+    invoices.each do |invoice|
+      if invoice.success?
+        merchant_hash[invoice.merchant_id] += 1
+      end
+    end
+    merchant_hash
+  end 
+
+  def sorted_merchants_per_customer
+    merchants_per_customer.sort_by do |merchant_id, purchases|
+      purchases 
+    end.reverse.first[0]
+  end
+
+  def favorite_merchant
+    Merchant.find_by_id(sorted_merchants_per_customer)
+  end
+
+  def transactions
+    transaction = []
+    invoices.each do |invoice| 
+      if invoice.success?
+        transaction.push(invoice.transactions)
+      end
+    end
+    return transaction
+  end
+
 
   # def self.find_all_by_attribute(attribute,value)
   #   all.select {|record| record.send(attribute) == value}
