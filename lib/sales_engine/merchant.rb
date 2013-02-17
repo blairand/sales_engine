@@ -58,20 +58,31 @@ class Merchant
     Invoice.find_all_by_merchant_id(@id)
   end
 
-  def self.most_revenue(number)
-    #find all invoices for each merchant
-    #invoice, sum the revenue of each invoice item 
-    #invoice item, find the revenue
-  end
-
-  def revenue
+  def revenue #Refactor this
     successful_invoices = []
     invoices.each do |invoice|
-      successful_invoices.push(invoice) if invoice.success?
+      if invoice.success? 
+        successful_invoices.push(invoice)
+      end
     end
     successful_invoices.collect{|invoice| invoice.invoice_revenue}.inject(:+)
   end
 
+  def self.merchant_revenue
+    merchant_revenue = Hash.new(0)
+    all.each do |merchant|
+      merchant_revenue[merchant.id] = merchant.revenue
+    end
+    merchant_revenue.sort_by{|k,v| v}.reverse!
+  end
+
+
+  def self.most_revenue(number=1)
+    sorted_list = merchant_revenue
+    sorted_list[0...number].collect do |merchant|
+      find_by_id(merchant[0])
+    end
+  end
 
 
 end
