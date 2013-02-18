@@ -2,18 +2,20 @@ require './test/sales_engine/test_helper'
 
 require './lib/sales_engine/customer'
 
-require './lib/sales_engine/customer_loader'
-require './lib/sales_engine/invoice_loader'
-
-
 class CustomerTest < MiniTest::Unit::TestCase
   def setup
     CustomerLoader.from_csv("./test/data/short_customers.csv")
+    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
+    TransactionLoader.from_csv("./test/data/short_invoices.csv")
+    MerchantLoader.from_csv("./test/data/short_invoices.csv")
   end
 
   def teardown
-    a = Array.new
-    Customer.add(a)
+    clear_array = []
+    Customer.add(clear_array)
+    Invoice.add(clear_array)
+    Transaction.add(clear_array)
+    Merchant.add(clear_array)
   end
   
   def test_it_exists
@@ -99,35 +101,30 @@ class CustomerTest < MiniTest::Unit::TestCase
   end
 
   def test_it_returns_invoices_for_a_customer_instance
-    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
     a = Customer.find_by_id("1")
     b = a.invoices
     assert_equal 8, b.count
     assert_equal "1", b.first.id
     assert_equal "1", a.id
+
   end
 
   def test_it_creates_hash_of_merchants_and_customer
-    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
-    a = merchants_per_customer
-    puts a
+    a = Customer.find_by_id("1").merchants_per_customer
+    puts a 
   end 
 
   def test_it_sorts_the_hash_by_purchases
-    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
-    a = sorted_merchants_per_customer
+    a = Customer.find_by_id("1").sorted_merchants_per_customer
     puts a
   end
 
   def test_it_finds_the_favorite_merchant
-    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
-    a = favorite_merchant
+    a = Customer.find_by_id("1").favorite_merchant
     puts a
   end
 
   def test_it_collects_transactions_for_each_invoice
-    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
-
     a = transactions
     puts a
   end

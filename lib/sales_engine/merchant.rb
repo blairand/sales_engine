@@ -91,14 +91,20 @@ class Merchant
     end
   end
 
-  def revenue(date="all")
-    if date == "all"
-      single_merchant_invoices.collect do |invoice|
-        invoice.invoice_revenue
-      end.inject(:+)
+  def revenue(date=:all)
+    if date == :all
+      revenue_for_invoices = single_merchant_invoices
     else
-      puts "sorry no dates yet."
+      date_o = Date.parse(date)
+      revenue_for_invoices = date_specific_single_merchant_invoices(date_o)
     end
+    revenue_for_invoices.collect do |invoice|
+      invoice.invoice_revenue
+    end.inject(:+)
+  end
+
+  def date_specific_single_merchant_invoices(date)
+    single_merchant_invoices.find_all {|record| record.created_at == date}
   end
 
   def self.merchant_revenue
@@ -116,6 +122,12 @@ class Merchant
     sorted_list[0...number].collect do |merchant|
       find_by_id(merchant[0])
     end
+  end
+
+  def self.revenue(date)
+    all.collect do |merchant|
+      merchant.revenue(date)
+    end.delete_if {|x| x == nil}.inject(:+)
   end
 
   def customers_with_pending_invoices

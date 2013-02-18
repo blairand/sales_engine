@@ -12,7 +12,7 @@ class Item
   end
 
   def self.add(items)    
-    @items = item
+    @items = items
   end
 
   def self.all
