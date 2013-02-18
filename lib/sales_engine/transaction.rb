@@ -8,8 +8,8 @@ class Transaction
     @invoice_id = input[:invoice_id]
     @credit_card_number = input[:credit_card_number]
     @result = input[:result]
-    @created_at = input[:created_at]
-    @updated_at = input[:updated_at]
+    @created_at = Date.parse(input[:created_at])
+    @updated_at = Date.parse(input[:updated_at])
   end
 
   def self.add(transactions)

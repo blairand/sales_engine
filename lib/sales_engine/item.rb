@@ -7,8 +7,8 @@ class Item
     @description = input[:description]
     @unit_price = input[:unit_price]
     @merchant_id = input[:merchant_id]
-    @created_at = input[:created_at]
-    @updated_at = input[:updated_at]
+    @created_at = Date.parse(input[:created_at])
+    @updated_at = Date.parse(input[:updated_at])
   end
 
   def self.add(item)

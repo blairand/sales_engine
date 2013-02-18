@@ -91,10 +91,14 @@ class Merchant
     end
   end
 
-  def revenue
-    single_merchant_invoices.collect do |invoice|
-      invoice.invoice_revenue
-    end.inject(:+)
+  def revenue(date="all")
+    if date == "all"
+      single_merchant_invoices.collect do |invoice|
+        invoice.invoice_revenue
+      end.inject(:+)
+    else
+      puts "sorry no dates yet."
+    end
   end
 
   def self.merchant_revenue

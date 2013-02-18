@@ -26,13 +26,13 @@ a = Time.new
 # #puts InvoiceItem.find_by_id("1").revenue
 # # puts InvoiceItem.find_by_id("1").item
 # # puts Invoice.find_by_id("13").pending?
-puts Merchant.most_revenue
+puts Merchant.find_by_id("1").inspect
 # #puts Merchant.most_revenue(5)
 b = Time.new
 puts b-a
 
 a = Time.new
-puts Merchant.most_items
+#puts Merchant.most_items
 b = Time.new
 puts b-a
 

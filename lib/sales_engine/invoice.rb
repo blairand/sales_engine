@@ -10,8 +10,8 @@ class Invoice
     @customer_id = input[:customer_id]
     @merchant_id = input[:merchant_id]
     @status = input[:status]
-    @created_at = input[:created_at]
-    @updated_at = input[:updated_at]
+    @created_at = Date.parse(input[:created_at])
+    @updated_at = Date.parse(input[:updated_at])
   end
 
   def self.add(invoice)
