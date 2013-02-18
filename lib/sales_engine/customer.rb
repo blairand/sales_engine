@@ -28,19 +28,19 @@ class Customer
   end
 
   def self.find_by_first_name(value)
-    all.find {|record| record.first_name == value}
+    all.find {|record| record.first_name.downcase == value.downcase}
   end
 
   def self.find_all_by_first_name(value)
-    all.find_all {|record| record.first_name == value}
+    all.find_all {|record| record.first_name.downcase == value.downcase}
   end
 
   def self.find_by_last_name(value)
-    all.find {|record| record.last_name == value}
+    all.find {|record| record.last_name.downcase == value.downcase}
   end
 
   def self.find_all_by_last_name(value)
-    all.find_all {|record| record.last_name == value}
+    all.find_all {|record| record.last_name.downcase == value.downcase}
   end 
 
   def self.find_by_created_at(value)

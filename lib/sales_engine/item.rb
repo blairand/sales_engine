@@ -29,19 +29,19 @@ class Item
   end
 
   def self.find_by_name(value)
-    all.find {|record| record.name == value}
+    all.find {|record| record.name.downcase == value.downcase}
   end
 
   def self.find_all_by_name(value)
-    all.find_all {|record| record.name == value}
+    all.find_all {|record| record.name.downcase == value.downcase}
   end
 
   def self.find_by_description(value)
-    all.find {|record| record.description == value}
+    all.find {|record| record.description.downcase == value.downcase}
   end
 
   def self.find_all_by_description(value)
-    all.find_all {|record| record.description == value}
+    all.find_all {|record| record.description.downcase == value.downcase}
   end
 
   def self.find_by_unit_price(value)
@@ -83,6 +83,38 @@ class Item
   def merchant
     Merchant.find_by_id(@merchant_id)
   end
+
+  # def successful_invoice_items
+  #   items_and_stuff = Hash.new(0)
+
+  #   all.each do |item|
+  #     item.invoice_item.invoice.success?
+  #       items_and_stuff[invoice_item.item_id] = invoice_item.revenue
+  #     end
+  #   end
+  #   items_and_stuff
+  # end
+
+  # def sort_list
+  #   successful_invoice_items.sort_by do |id,value|
+  #     value
+  #   end.reverse!
+  # end
+
+  # def self.most_revenue(number=1)
+  #   sorted_list = successful_invoice_items
+  #   sorted_list[0...number].collect do |item|
+  #     find_by_id(item[0])
+  #   end
+  # end
+
+  # def self.most_items(number=1)
+  #   sorted_list = unit_revenue_or_quantity(:quantity)
+    
+  #   sorted_list[0...number].collect do |item|
+  #     find_by_id(item[0])
+  #   end
+  # end
 
 end
 

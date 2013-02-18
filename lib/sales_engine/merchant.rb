@@ -27,11 +27,11 @@ class Merchant
   end
 
   def self.find_by_name(input)
-    all.find {|record| record.name == input}
+    all.find {|record| record.name.downcase == input.downcase}
   end
 
   def self.find_all_by_name(input)
-    all.find_all {|record| record.name == input}
+    all.find_all {|record| record.name.downcase == input.downcase}
   end
 
   def self.find_by_created_at(input)
@@ -120,6 +120,24 @@ class Merchant
       customers.push(invoice.customer) if invoice.pending? 
     end
     customers
+  end
+
+  def favorite_customer
+    Customer.find_by_id(sorted_customers)
+  end
+
+  def customers_and_invoices
+    customers = Hash.new(0)
+    single_merchant_invoices.each do |invoice|
+      customers[invoice.customer_id] +=1
+    end
+    customers
+  end
+
+  def sorted_customers
+    customers_and_invoices.sort_by do |id,invoice|
+      invoice
+    end.reverse.first[0]
   end
 
 end
