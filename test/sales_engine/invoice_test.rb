@@ -86,8 +86,8 @@ class InvoiceTest < MiniTest::Unit::TestCase
   # end
 
   def test_it_finds_by_created_at
-    a = Invoice.find_by_created_at("2012-03-25 09:54:09 UTC")
-    assert_equal "2012-03-25 09:54:09 UTC", a.created_at
+    a = Invoice.find_by_created_at(Date.parse("2012-03-25 09:54:09 UTC"))
+    assert_equal Date.parse("2012-03-25 09:54:09 UTC"), a.created_at
   end
 
   #  def test_it_finds_all_by_created_at
@@ -96,8 +96,8 @@ class InvoiceTest < MiniTest::Unit::TestCase
   # end
 
   def test_it_finds_by_updated_at
-    a = Invoice.find_by_updated_at("2012-03-25 09:54:09 UTC")
-    assert_equal "2012-03-25 09:54:09 UTC", a.updated_at
+    a = Invoice.find_by_updated_at(Date.parse("2012-03-25 09:54:09 UTC"))
+    assert_equal Date.parse("2012-03-25 09:54:09 UTC"), a.updated_at
   end
 
   # def test_it_finds_all_by_updated_at

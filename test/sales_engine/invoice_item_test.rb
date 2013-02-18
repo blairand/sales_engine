@@ -85,7 +85,7 @@ class InvoiceItemTest < MiniTest::Unit::TestCase
 
   def test_it_finds_all_by_quantity
     b = InvoiceItem.find_all_by_quantity("6")
-    assert_equal 3, b.count
+    assert_equal 
   end
 
   def test_it_find_by_unit_price
@@ -99,22 +99,22 @@ class InvoiceItemTest < MiniTest::Unit::TestCase
   end
 
   def test_it_finds_by_created_at
-    a = InvoiceItem.find_by_created_at("2012-03-27 14:54:09 UTC")
-    assert_equal "2012-03-27 14:54:09 UTC", a.created_at
+    a = InvoiceItem.find_by_created_at(Date.parse("2012-03-27 14:54:09 UTC"))
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), a.created_at
   end
 
   def test_it_finds_all_by_created_at
-    a = InvoiceItem.find_all_by_created_at("2012-03-27 14:54:09 UTC")
+    a = InvoiceItem.find_all_by_created_at(Date.parse("2012-03-27 14:54:09 UTC"))
     assert_equal 10, a.count
   end
 
   def test_it_finds_by_updated_at
-    a = InvoiceItem.find_by_updated_at("2012-03-27 14:54:09 UTC")
-    assert_equal "2012-03-27 14:54:09 UTC", a.updated_at
+    a = InvoiceItem.find_by_updated_at(Date.parse("2012-03-27 14:54:09 UTC"))
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), a.updated_at
   end
 
   def test_it_finds_all_by_updated_at
-    a = InvoiceItem.find_all_by_updated_at("2012-03-27 14:54:09 UTC")
+    a = InvoiceItem.find_all_by_updated_at(Date.parse("2012-03-27 14:54:09 UTC"))
     assert_equal 10, a.count
   end
 

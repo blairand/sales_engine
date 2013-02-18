@@ -3,6 +3,8 @@ require './test/sales_engine/test_helper'
 require './lib/sales_engine/customer'
 
 require './lib/sales_engine/customer_loader'
+require './lib/sales_engine/invoice_loader'
+
 
 class CustomerTest < MiniTest::Unit::TestCase
   def setup
@@ -50,23 +52,23 @@ class CustomerTest < MiniTest::Unit::TestCase
   end
 
   def test_it_finds_by_created_at
-    a = Customer.find_by_created_at("2012-03-27 14:54:09 UTC")
-    assert_equal "2012-03-27 14:54:09 UTC", a.created_at
+    a = Customer.find_by_created_at(Date.parse("2012-03-27 14:54:09 UTC"))
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), a.created_at
   end
 
   def test_it_finds_all_by_created_at
-    a = Customer.find_all_by_created_at("2012-03-27 14:54:10 UTC")
-    assert_equal 6, a.count
+    a = Customer.find_all_by_created_at(Date.parse("2012-03-27 14:54:10 UTC"))
+    assert_equal 10, a.count
   end
 
   def test_it_finds_by_updated_at
-    a = Customer.find_by_updated_at("2012-03-27 14:54:09 UTC")
-    assert_equal "2012-03-27 14:54:09 UTC", a.updated_at
+    a = Customer.find_by_updated_at(Date.parse("2012-03-27 14:54:09 UTC"))
+    assert_equal Date.parse("2012-03-27 14:54:09 UTC"), a.updated_at
   end
 
   def test_it_finds_all_by_updated_at
-    a = Customer.find_all_by_updated_at("2012-03-27 14:54:11 UTC")
-    assert_equal 3, a.count
+    a = Customer.find_all_by_updated_at(Date.parse("2012-03-27 14:54:11 UTC"))
+    assert_equal 10, a.count
   end
 
   def test_it_finds_by_first_name
@@ -89,8 +91,45 @@ class CustomerTest < MiniTest::Unit::TestCase
     assert_equal 2, d.count
   end
 
-  def test_returns_collection_of_invoices
-    skip "our tests are broken but the method works"
+  def test_it_returns_a_random
+    a = Customer.random
+    b = Customer.random
+
+    refute_equal a.id,b.id
+  end
+
+  def test_it_returns_invoices_for_a_customer_instance
+    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
+    a = Customer.find_by_id("1")
+    b = a.invoices
+    assert_equal 8, b.count
+    assert_equal "1", b.first.id
+    assert_equal "1", a.id
+  end
+
+  def test_it_creates_hash_of_merchants_and_customer
+    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
+    a = merchants_per_customer
+    puts a
+  end 
+
+  def test_it_sorts_the_hash_by_purchases
+    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
+    a = sorted_merchants_per_customer
+    puts a
+  end
+
+  def test_it_finds_the_favorite_merchant
+    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
+    a = favorite_merchant
+    puts a
+  end
+
+  def test_it_collects_transactions_for_each_invoice
+    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
+
+    a = transactions
+    puts a
   end
 
 end

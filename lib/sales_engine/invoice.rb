@@ -15,8 +15,7 @@ class Invoice
   end
 
   def self.add(invoice)
-    @invoices ||= []
-    @invoices << invoice
+    @invoices = invoice
   end
 
   def self.all

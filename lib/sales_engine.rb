@@ -32,7 +32,7 @@ b = Time.new
 puts b-a
 
 a = Time.new
-#puts Merchant.most_items
+puts InvoiceItem.find_by_quantity("6")
 b = Time.new
 puts b-a
 

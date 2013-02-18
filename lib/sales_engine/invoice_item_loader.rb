@@ -7,13 +7,8 @@ class InvoiceItemLoader
     invoice_items = []
     output = CSV.open(input, headers: true, header_converters: :symbol)
     output.each do |row|
-
       invoice_items << InvoiceItem.new(row)
-      
     end
-
     InvoiceItem.add(invoice_items)
-
   end
-
 end

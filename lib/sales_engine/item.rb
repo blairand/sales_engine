@@ -11,9 +11,8 @@ class Item
     @updated_at = Date.parse(input[:updated_at])
   end
 
-  def self.add(item)
-    @items ||= []
-    @items << item
+  def self.add(items)    
+    @items = item
   end
 
   def self.all

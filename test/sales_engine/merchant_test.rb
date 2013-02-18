@@ -64,23 +64,23 @@ class MerchantTest < MiniTest::Unit::TestCase
   end
 
   def test_it_finds_by_created_at
-    a = Merchant.find_by_created_at("2012-03-27 14:53:59 UTC")
-    assert_equal "2012-03-27 14:53:59 UTC", a.created_at
+    a = Merchant.find_by_created_at(Date.parse("2012-03-27 14:53:59 UTC"))
+    assert_equal Date.parse("2012-03-27 14:53:59 UTC"), a.created_at
   end
 
   def test_it_finds_all_by_created_at
-    a = Merchant.find_all_by_created_at("2012-03-27 14:53:59 UTC")
+    a = Merchant.find_all_by_created_at(Date.parse("2012-03-27 14:53:59 UTC"))
     assert_equal 9, a.count
   end
 
   def test_it_finds_by_updated_at
-    a = Merchant.find_by_updated_at("2012-03-27 14:53:59 UTC")
-    assert_equal "2012-03-27 14:53:59 UTC", a.updated_at
+    a = Merchant.find_by_updated_at(Date.parse("2012-03-27 14:53:59 UTC"))
+    assert_equal Date.parse("2012-03-27 14:53:59 UTC"), a.updated_at
   end
 
   def test_it_finds_all_by_updated_at
-    a = Merchant.find_all_by_updated_at("2012-03-27 14:53:59 UTC")
-    assert_equal 8, a.count
+    a = Merchant.find_all_by_updated_at(Date.parse("2012-03-27 14:53:59 UTC"))
+    assert_equal 9, a.count
   end
 
   # def test_it_returns_a_collection_of_item_instances
