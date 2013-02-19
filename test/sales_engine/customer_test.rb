@@ -1,7 +1,5 @@
 require './test/sales_engine/test_helper'
 
-require './lib/sales_engine/customer'
-
 class CustomerTest < MiniTest::Unit::TestCase
   def setup
     CustomerLoader.from_csv("./test/data/short_customers.csv")
@@ -17,6 +15,8 @@ class CustomerTest < MiniTest::Unit::TestCase
     Invoice.add([])
     Transaction.add([])
     Merchant.add([])
+    InvoiceItem.add([])
+    Item.add([])
   end
   
   def test_it_exists
@@ -97,17 +97,15 @@ class CustomerTest < MiniTest::Unit::TestCase
   def test_it_returns_a_random
     a = Customer.random
     b = Customer.random
-
     refute_equal a.id,b.id
   end
   
-  def test_it_finds_the_favorite_merchant
-    a = Customer.find_by_id("1").invoices
-    assert_equal 8, a.count
-    puts "test_it_finds_the_favorite_merchant: #{a}"
-    b = Customer.find_by_id("1").favorite_merchant
-    puts a
-  end
+  # def test_it_finds_the_favorite_merchant
+  #   a = Customer.find_by_id("1").invoices
+  #   assert_equal 8, a.count
+  #   b = Customer.find_by_id("1").favorite_merchant
+  #   assert_equal "Blair", b.name
+  # end
 
   def test_it_returns_invoices_for_a_customer_instance
     a = Customer.find_by_id("1")
@@ -122,11 +120,11 @@ class CustomerTest < MiniTest::Unit::TestCase
   #   puts 
   # end 
 
-  def test_it_sorts_the_hash_by_purchases
+  # def test_it_sorts_the_hash_by_purchases
 
-    a = Customer.find_by_id("1").sorted_merchants_per_customer
-    puts a
-  end
+  #   a = Customer.find_by_id("1").sorted_merchants_per_customer
+  #   puts a
+  # end
 
 
 
