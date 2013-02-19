@@ -20,21 +20,10 @@ class SalesEngine
 end
 
 SalesEngine.startup
-a = Time.new
 # # puts Item.find_by_id("1").merchant
 # # puts Item.find_by_id("1").invoice_items
 # #puts InvoiceItem.find_by_id("1").revenue
 # # puts InvoiceItem.find_by_id("1").item
 # # puts Invoice.find_by_id("13").pending?
-puts Merchant.revenue("Tue, 20 Mar 2012")
-
-# #puts Merchant.most_revenue(5)
-b = Time.new
-puts b-a
-
-a = Time.new
-puts Merchant.find_by_name("Willms and Sons").revenue("Fri, 09 Mar 2012")
-b = Time.new
-puts b-a
-
+puts Customer.find_by_id("1").favorite_merchant
 

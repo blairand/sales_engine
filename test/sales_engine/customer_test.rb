@@ -6,16 +6,17 @@ class CustomerTest < MiniTest::Unit::TestCase
   def setup
     CustomerLoader.from_csv("./test/data/short_customers.csv")
     InvoiceLoader.from_csv("./test/data/short_invoices.csv")
-    TransactionLoader.from_csv("./test/data/short_invoices.csv")
-    MerchantLoader.from_csv("./test/data/short_invoices.csv")
+    InvoiceItemLoader.from_csv("./test/data/short_invoice_items.csv")
+    ItemLoader.from_csv("./test/data/short_items.csv")
+    TransactionLoader.from_csv("./test/data/short_transactions.csv")
+    MerchantLoader.from_csv("./test/data/short_merchants.csv")
   end
 
   def teardown
-    clear_array = []
-    Customer.add(clear_array)
-    Invoice.add(clear_array)
-    Transaction.add(clear_array)
-    Merchant.add(clear_array)
+    Customer.add([])
+    Invoice.add([])
+    Transaction.add([])
+    Merchant.add([])
   end
   
   def test_it_exists
@@ -99,6 +100,14 @@ class CustomerTest < MiniTest::Unit::TestCase
 
     refute_equal a.id,b.id
   end
+  
+  def test_it_finds_the_favorite_merchant
+    a = Customer.find_by_id("1").invoices
+    assert_equal 8, a.count
+    puts "test_it_finds_the_favorite_merchant: #{a}"
+    b = Customer.find_by_id("1").favorite_merchant
+    puts a
+  end
 
   def test_it_returns_invoices_for_a_customer_instance
     a = Customer.find_by_id("1")
@@ -106,27 +115,24 @@ class CustomerTest < MiniTest::Unit::TestCase
     assert_equal 8, b.count
     assert_equal "1", b.first.id
     assert_equal "1", a.id
-
   end
 
-  def test_it_creates_hash_of_merchants_and_customer
-    a = Customer.find_by_id("1").merchants_per_customer
-    puts a 
-  end 
+  # def test_it_creates_hash_of_merchants_and_customer
+  #   a = Customer.find_by_id("1").merchants_per_customer
+  #   puts 
+  # end 
 
   def test_it_sorts_the_hash_by_purchases
+
     a = Customer.find_by_id("1").sorted_merchants_per_customer
     puts a
   end
 
-  def test_it_finds_the_favorite_merchant
-    a = Customer.find_by_id("1").favorite_merchant
-    puts a
-  end
 
-  def test_it_collects_transactions_for_each_invoice
-    a = transactions
-    puts a
-  end
+
+  # def test_it_collects_transactions_for_each_invoice
+  #   a = Customer.find_by_id("1").transactions
+  #   puts a
+  # end
 
 end

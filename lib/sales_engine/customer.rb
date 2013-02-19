@@ -62,7 +62,7 @@ class Customer
   end
 
   def merchants_per_customer
-    merchant_hash = Hash.new(0)
+    merchant_hash = Hash.new(0)        
     invoices.each do |invoice|
       if invoice.success?
         merchant_hash[invoice.merchant_id] += 1
@@ -72,13 +72,15 @@ class Customer
   end 
 
   def sorted_merchants_per_customer
-    merchants_per_customer.sort_by do |merchant_id, purchases|
+    sorted_list = merchants_per_customer.sort_by do |merchant_id, purchases|
       purchases 
-    end.reverse.first[0]
+    end.reverse
+    sorted_list.first[0]
   end
 
   def favorite_merchant
-    Merchant.find_by_id(sorted_merchants_per_customer)
+    result = sorted_merchants_per_customer
+    Merchant.find_by_id(result)
   end
 
   def transactions
