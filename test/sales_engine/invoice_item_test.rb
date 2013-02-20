@@ -92,6 +92,18 @@ class InvoiceItemTest < MiniTest::Unit::TestCase
     assert_equal 209916, ii16.revenue
   end
 
+  def test_creating_a_new_invoice
+    item1 = Item.find_by_id("1")
+    item2 = Item.find_by_id("2") 
+    items = [item1,item1,item2]
+    before_count = InvoiceItem.count
+    invoice_item = InvoiceItem.create(items,1234)
+    after_count = InvoiceItem.count
+    assert_equal before_count + 2, after_count
+    # assert_equal Invoice.count, invoices.last.id
+    # assert_equal customer.id, invoices.last.customer_id
+  end
+
 end
 
 

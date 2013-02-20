@@ -14,6 +14,21 @@ class Invoice
     @updated_at = Date.parse(input[:updated_at])
   end
 
+  def self.create(input)
+    created_invoice = self.new(
+      id: self.count+1,
+      customer_id: input[:customer].id,
+      merchant_id: input[:merchant].id,
+      status: input[:status],
+      created_at: Time.new.to_s,
+      updated_at: Time.new.to_s)
+
+    @invoices << created_invoice
+
+    InvoiceItem.create(input[:items],created_invoice.id)
+    created_invoice
+  end
+
   def self.add(invoice)
     @invoices = invoice
   end

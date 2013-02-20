@@ -14,8 +14,32 @@ class InvoiceItem
     @updated_at = Date.parse(input[:updated_at])
   end
 
+  def self.create(items,invoice_id)
+    item_quantity = items.inject(Hash.new(0)) do |memo, item|
+      memo[item] += 1 ; memo
+    end
+
+    item_quantity.each do |item, quantity|
+      new_invoice_item = self.new(
+        id: self.count+1,
+        item_id: item.id,
+        invoice_id: invoice_id.to_s,
+        quantity: quantity,
+        unit_price: item.unit_price,
+        created_at: Time.new.to_s,
+        updated_at: Time.new.to_s
+        )
+      @invoice_items << new_invoice_item
+    end
+
+  end
+
   def self.add(invoice_items)
     @invoice_items = invoice_items
+  end
+
+  def self.count
+    all.count
   end
 
   def self.all

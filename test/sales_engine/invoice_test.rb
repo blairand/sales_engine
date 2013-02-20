@@ -102,14 +102,20 @@ class InvoiceTest < MiniTest::Unit::TestCase
   end
 
   def test_creating_a_new_invoice
-    customer = Customer.new(id: 123, first_name: 'Sarah', last_name: 'Smythe')
-    merchant = Merchant.new(id: 123, name: 'ACME Widgets')
+    customer = Customer.find_by_id("1")
+    merchant = Merchant.find_by_id("1")
+    item1 = Item.find_by_id("1")
+    item2 = Item.find_by_id("2")
+    items = [item1,item1,item2]
     before_count = Invoice.count
-    invoice = Invoice.create(customer: customer, merchant: merchant, status: "shipped")
+    invoice = Invoice.create(customer: customer,
+                              merchant: merchant,
+                              status: "shipped",
+                              items: items)
     after_count = Invoice.count
     assert_equal before_count + 1, after_count
-    assert_equal "ACME Widgets", invoice.merchant.name
-    assert_equal "Sarah Smythe", invoice.customer.full_name
+    # assert_equal Invoice.count, invoices.last.id
+    assert_equal customer.id, invoice.customer_id
   end
 
 

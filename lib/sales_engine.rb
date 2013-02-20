@@ -10,8 +10,8 @@ require 'bigdecimal'
 class SalesEngine
 
   def self.startup
-    CustomerLoader.from_csv
     MerchantLoader.from_csv
+    CustomerLoader.from_csv
     ItemLoader.from_csv
     InvoiceItemLoader.from_csv
     TransactionLoader.from_csv
