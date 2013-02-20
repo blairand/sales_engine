@@ -91,14 +91,16 @@ class Invoice
   end
 
   def invoice_revenue
-    invoice_items.collect do |invoice_item|
-      invoice_item.revenue
-    end.inject(:+)
+      invoice_data_collector(:revenue)
   end
 
-  def invoice_unit_quantity
+  def invoice_unit_quantity 
+      invoice_data_collector(:quantity)
+  end
+
+  def invoice_data_collector(attribute)
     invoice_items.collect do |invoice_item|
-      invoice_item.quantity
+      invoice_item.send(attribute)
     end.inject(:+)
   end
 
