@@ -83,37 +83,37 @@ class Item
     Merchant.find_by_id(@merchant_id)
   end
 
-  # def successful_invoice_items
-  #   items_and_stuff = Hash.new(0)
+  def successful_invoice_items
+    items_and_stuff = Hash.new(0)
 
-  #   all.each do |item|
-  #     item.invoice_item.invoice.success?
-  #       items_and_stuff[invoice_item.item_id] = invoice_item.revenue
-  #     end
-  #   end
-  #   items_and_stuff
-  # end
+    all.each do |item|
+      if item.invoice_item.invoice.success?
+        items_and_stuff[invoice_item.item_id] = invoice_item.revenue
+      end
+    end
+    items_and_stuff
+  end
 
-  # def sort_list
-  #   successful_invoice_items.sort_by do |id,value|
-  #     value
-  #   end.reverse!
-  # end
+  def sort_list
+    successful_invoice_items.sort_by do |id,value|
+      value
+    end.reverse!
+  end
 
-  # def self.most_revenue(number=1)
-  #   sorted_list = successful_invoice_items
-  #   sorted_list[0...number].collect do |item|
-  #     find_by_id(item[0])
-  #   end
-  # end
+  def self.most_revenue(number=1)
+    sorted_list = successful_invoice_items
+    sorted_list[0...number].collect do |item|
+      find_by_id(item[0])
+    end
+  end
 
-  # def self.most_items(number=1)
-  #   sorted_list = unit_revenue_or_quantity(:quantity)
+  def self.most_items(number=1)
+    sorted_list = unit_revenue_or_quantity(:quantity)
     
-  #   sorted_list[0...number].collect do |item|
-  #     find_by_id(item[0])
-  #   end
-  # end
+    sorted_list[0...number].collect do |item|
+      find_by_id(item[0])
+    end
+  end
 
 end
 

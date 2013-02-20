@@ -8,7 +8,6 @@ class MerchantTest < MiniTest::Unit::TestCase
     refute_equal a.id, b.id
   end
 
-
   def test_it_finds_by_name
     a = Merchant.find_by_name("Schroeder-Jerde")
     assert_equal "Schroeder-Jerde", a.name

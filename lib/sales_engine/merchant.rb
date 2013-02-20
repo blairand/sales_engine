@@ -124,18 +124,8 @@ class Merchant
   end
 
   def self.merchant_revenue
-    merchants_revenues = Hash.new(0)
-    all.each do |merchant|
-      merchants_revenues[merchant.id] = merchant.revenue
-    end.sort_by {|id,rev| rev}.reverse
-    merchants_revenues.sort_by do |id,revenue|
-      revenue
-    end.reverse!
-
     all.each_with_object(Hash.new(0)) do |merch, h|
       h[merch.id] = merch.revenue
-      :favorite_customer
-      1 + 65
     end.sort_by {|id, rev| rev }.reverse
   end
 

@@ -24,7 +24,7 @@ class ItemTest < MiniTest::Unit::TestCase
 
   def test_it_finds_all_by_unit_price
     b = Item.find_all_by_unit_price("22582")
-    assert_equal 2, b.count
+    assert_equal 1, b.count
   end
 
   def test_it_find_by_merchant_id
@@ -34,7 +34,7 @@ class ItemTest < MiniTest::Unit::TestCase
 
   def test_it_find_all_by_merchant_id
     c = Item.find_all_by_merchant_id("1")
-    assert_equal 10, c.count
+    assert_equal 15, c.count
   end
 
   def test_it_finds_by_created_at
@@ -44,7 +44,7 @@ class ItemTest < MiniTest::Unit::TestCase
 
   def test_it_finds_all_by_created_at
     a = Item.find_all_by_created_at(Date.parse("2012-03-27 14:53:59 UTC"))
-    assert_equal 10, a.count
+    assert_equal 2483, a.count
   end
 
   def test_it_finds_by_updated_at
@@ -54,7 +54,25 @@ class ItemTest < MiniTest::Unit::TestCase
 
   def test_it_finds_all_by_updated_at
     a = Item.find_all_by_updated_at(Date.parse("2012-03-27 14:54:09 UTC"))
-    assert_equal 10, a.count
+    assert_equal 2483, a.count
+  end
+
+  def test_it_finds_the_most_revenue_for_x_items
+    a10 = Item.most_revenue(5)
+    assert_equal "Item Dicta Autem", a10.first.name
+    assert_equal "Item Amet Accusamus", a10.last.name
+  end
+
+  def test_it_finds_the_most_items_for_x_items
+    most = Item.most_items(37)
+    assert_equal "Item Nam Magnam", most[1].name
+    assert_equal "Item Ut Quaerat", most.last.name
+  end
+
+  def test_it_describes_the_best_day
+    item10 = Item.find_by_name "Item Accusamus Ut" 
+    date10 = Date.parse "Sat, 24 Mar 2012"
+    assert_equal date10 item10.best_day
   end
 
 end
