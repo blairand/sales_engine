@@ -100,7 +100,7 @@ module SalesEngine
     end
 
     def pending?
-      transactions.any?{|transaction| !transaction.success?}
+      transactions.all?{|transaction| !transaction.success?}
     end
 
     def self.paid_invoices

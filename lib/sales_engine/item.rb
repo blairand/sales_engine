@@ -7,7 +7,7 @@ module SalesEngine
       @id = input[:id].to_i
       @name = input[:name]
       @description = input[:description]
-      @unit_price = input[:unit_price].to_i
+      @unit_price = BigDecimal.new(input[:unit_price])/100.0
       @merchant_id = input[:merchant_id].to_i
       @created_at = Date.parse(input[:created_at])
       @updated_at = Date.parse(input[:updated_at])
