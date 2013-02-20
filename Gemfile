@@ -1,5 +1,5 @@
 gem 'simplecov', :require => false, :group => :test
-
+gem 'pry'
 
 # group :development do
 #   gem 'guard'

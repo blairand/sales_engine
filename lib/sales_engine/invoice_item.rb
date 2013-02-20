@@ -87,7 +87,7 @@ class InvoiceItem
   end
 
   def revenue
-    (@quantity.to_i * @unit_price.to_i) / 100.00
+    @quantity.to_i * @unit_price.to_i
   end
 
   def quantity

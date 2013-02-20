@@ -100,13 +100,6 @@ class CustomerTest < MiniTest::Unit::TestCase
     refute_equal a.id,b.id
   end
   
-  # def test_it_finds_the_favorite_merchant
-  #   a = Customer.find_by_id("1").invoices
-  #   assert_equal 8, a.count
-  #   b = Customer.find_by_id("1").favorite_merchant
-  #   assert_equal "Blair", b.name
-  # end
-
   def test_it_returns_invoices_for_a_customer_instance
     a = Customer.find_by_id("1")
     b = a.invoices
@@ -115,22 +108,35 @@ class CustomerTest < MiniTest::Unit::TestCase
     assert_equal "1", a.id
   end
 
-  # def test_it_creates_hash_of_merchants_and_customer
-  #   a = Customer.find_by_id("1").merchants_per_customer
-  #   puts 
-  # end 
+  def test_it_returns_merchants_per_customer
+    MerchantLoader.from_csv
+    CustomerLoader.from_csv
+    InvoiceItemLoader.from_csv
+    a = Customer.find_by_id("2").merchants_per_customer
+    assert_equal 2, a["27"]
+  end 
 
-  # def test_it_sorts_the_hash_by_purchases
+  def test_it_returns_sorted_merchants_per_customer
+    MerchantLoader.from_csv
+    CustomerLoader.from_csv
+    InvoiceItemLoader.from_csv
+    a = Customer.find_by_id("2").sorted_merchants_per_customer
+    assert_equal "27", a
+  end
 
-  #   a = Customer.find_by_id("1").sorted_merchants_per_customer
-  #   puts a
-  # end
-
-
-
-  # def test_it_collects_transactions_for_each_invoice
-  #   a = Customer.find_by_id("1").transactions
-  #   puts a
-  # end
+  def test_it_returns_favorite_merchant
+    MerchantLoader.from_csv
+    CustomerLoader.from_csv
+    InvoiceItemLoader.from_csv
+    a = Customer.find_by_id("2").favorite_merchant
+    assert_equal "Shields, Hirthe and Smith", a.name
+  end
+  
+  def test_it_returns_transactions
+    CustomerLoader.from_csv
+    TransactionLoader.from_csv
+    a = Customer.find_by_id("2")
+    assert_equal 2, a.transactions.count
+  end
 
 end

@@ -91,16 +91,32 @@ class Merchant
     end
   end
 
-  def revenue(date=:all)
-    if date == :all
-      revenue_for_invoices = single_merchant_invoices
-    else
-      date_o = Date.parse(date)
-      revenue_for_invoices = date_specific_single_merchant_invoices(date_o)
+  # def self.revenue(date)
+  #   all.collect do |merchant|
+  #     merchant.revenue(date)
+  #   end.delete_if {|x| x == nil}.inject(:+)
+  # end
+
+  def self.revenue(date)
+    all.inject(0) do |revenue, merchant|
+      revenue + merchant.revenue(date)
     end
-    revenue_for_invoices.collect do |invoice|
-      invoice.invoice_revenue
-    end.inject(:+)
+  end
+
+  def revenue(date=nil)
+    revs = invoices_for_revenue(date).collect do |invoice|
+      # if invoice.invoice_revenue != nil
+        invoice.invoice_revenue
+    end.inject(:+) || 0  
+    BigDecimal.new((revs/100.0).to_s)
+  end
+
+  def invoices_for_revenue(date)
+    if date == nil
+      single_merchant_invoices
+    else
+      date_specific_single_merchant_invoices(date)
+    end
   end
 
   def date_specific_single_merchant_invoices(date)
@@ -111,10 +127,16 @@ class Merchant
     merchants_revenues = Hash.new(0)
     all.each do |merchant|
       merchants_revenues[merchant.id] = merchant.revenue
-    end
+    end.sort_by {|id,rev| rev}.reverse
     merchants_revenues.sort_by do |id,revenue|
       revenue
     end.reverse!
+
+    all.each_with_object(Hash.new(0)) do |merch, h|
+      h[merch.id] = merch.revenue
+      :favorite_customer
+      1 + 65
+    end.sort_by {|id, rev| rev }.reverse
   end
 
   def self.most_revenue(number=1)
@@ -124,18 +146,8 @@ class Merchant
     end
   end
 
-  def self.revenue(date)
-    all.collect do |merchant|
-      merchant.revenue(date)
-    end.delete_if {|x| x == nil}.inject(:+)
-  end
-
   def customers_with_pending_invoices
-    customers = []
-    invoices.each do |invoice|
-      customers.push(invoice.customer) if invoice.pending? 
-    end
-    customers
+    invoices.select { |i| i.pending? }.map { |i| i.customer }
   end
 
   def favorite_customer

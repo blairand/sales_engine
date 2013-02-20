@@ -5,6 +5,7 @@ require './lib/sales_engine/invoice_item_loader'
 require './lib/sales_engine/merchant_loader'
 require './lib/sales_engine/transaction_loader'
 require './lib/sales_engine/invoice_loader'
+require 'bigdecimal'
 
 class SalesEngine
 
@@ -20,10 +21,3 @@ class SalesEngine
 end
 
 SalesEngine.startup
-# # puts Item.find_by_id("1").merchant
-# # puts Item.find_by_id("1").invoice_items
-# #puts InvoiceItem.find_by_id("1").revenue
-# # puts InvoiceItem.find_by_id("1").item
-# # puts Invoice.find_by_id("13").pending?
-puts Customer.find_by_id("1").favorite_merchant
-

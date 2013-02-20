@@ -59,6 +59,8 @@ class InvoiceTest < MiniTest::Unit::TestCase
     assert_equal 2, @invoices.count
   end  
 
+
+
   def test_it_finds_by_id
     a = Invoice.find_by_id("1")
     assert_equal "1", a.id
@@ -157,5 +159,17 @@ class InvoiceTest < MiniTest::Unit::TestCase
     a = Invoice.find_by_id("1")
     assert_equal 8, a.items.count
   end
+
+  def test_creating_a_new_invoice
+    customer = Customer.new(id: 123, first_name: 'Sarah', last_name: 'Smythe')
+    merchant = Merchant.new(id: 123, name: 'ACME Widgets')
+    before_count = Invoice.count
+    invoice = Invoice.create(customer: customer, merchant: merchant, status: "shipped")
+    after_count = Invoice.count
+    assert_equal before_count + 1, after_count
+    assert_equal "ACME Widgets", invoice.merchant.name
+    assert_equal "Sarah Smythe", invoice.customer.full_name
+  end
+
 
 end

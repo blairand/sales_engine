@@ -22,6 +22,10 @@ class Invoice
     @invoices
   end
 
+  def self.count
+    @invoices.count
+  end
+
   def self.random
     all.sample
   end
@@ -97,7 +101,6 @@ class Invoice
       invoice_item.quantity
     end.inject(:+)
   end
-
 
   def customer
     Customer.find_by_id(@customer_id)
