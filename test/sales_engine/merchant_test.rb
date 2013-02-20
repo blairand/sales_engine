@@ -1,56 +1,6 @@
 require './test/sales_engine/test_helper'
 
 class MerchantTest < MiniTest::Unit::TestCase
-  # def setup
-  #   CustomerLoader.from_csv("./test/data/short_customers.csv")
-  #   InvoiceLoader.from_csv("./test/data/short_invoices.csv")
-  #   InvoiceItemLoader.from_csv("./test/data/short_invoice_items.csv")
-  #   ItemLoader.from_csv("./test/data/short_items.csv")
-  #   TransactionLoader.from_csv("./test/data/short_transactions.csv")
-  #   MerchantLoader.from_csv("./test/data/short_merchants.csv")
-  # #   # CustomerLoader.from_csv
-  # #   # InvoiceLoader.from_csv
-  # #   # InvoiceItemLoader.from_csv
-  # #   # ItemLoader.from_csv
-  # #   # TransactionLoader.from_csv
-  # #   # MerchantLoader.from_csv
-  # end
-
-  # def teardown
-  #   Customer.add([])
-  #   Invoice.add([])
-  #   Transaction.add([])
-  #   Merchant.add([])
-  #   InvoiceItem.add([])
-  #   Item.add([])
-  # end
-
-  def test_it_exists
-    merchant = Merchant.new(
-      :name=> "ABC", 
-      :id => 1,
-      :created_at=>"2012-03-27 14:54:09 UTC",
-      :updated_at=>"2012-03-27 14:54:09 UTC"
-      )
-    assert_kind_of Merchant, merchant
-    assert_equal "ABC", merchant.name
-  end
-
-  def test_it_adds_merchants
-    @merchant = []
-    @merchant << Merchant.add(Merchant.new(
-      :name => "ABC",
-      :id         => 1,
-      :created_at=>"2012-03-27 14:54:09 UTC",
-      :updated_at=>"2012-03-27 14:54:09 UTC"))
-
-    @merchant << Merchant.add(Merchant.new(
-      :name => "Blair",
-      :id         => 2,
-      :created_at=>"2012-03-27 14:54:09 UTC",
-      :updated_at=>"2012-03-27 14:54:09 UTC"))
-    assert_equal 2, @merchant.count
-  end
 
   def test_it_returns_random_merchant
     a = Merchant.random

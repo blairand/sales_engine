@@ -1,53 +1,6 @@
 require './test/sales_engine/test_helper'
 
 class CustomerTest < MiniTest::Unit::TestCase
-  def setup
-    CustomerLoader.from_csv("./test/data/short_customers.csv")
-    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
-    InvoiceItemLoader.from_csv("./test/data/short_invoice_items.csv")
-    ItemLoader.from_csv("./test/data/short_items.csv")
-    TransactionLoader.from_csv("./test/data/short_transactions.csv")
-    MerchantLoader.from_csv("./test/data/short_merchants.csv")
-  end
-
-  def teardown
-    Customer.add([])
-    Invoice.add([])
-    Transaction.add([])
-    Merchant.add([])
-    InvoiceItem.add([])
-    Item.add([])
-  end
-  
-  def test_it_exists
-    customer = Customer.new(
-      :first_name=> "Aimee", 
-      :id => 1, 
-      :last_name=>"Maher", 
-      :created_at=>"2012-03-27 14:54:09 UTC", 
-      :updated_at=>"2012-03-27 14:54:09 UTC")
-    
-    assert_kind_of Customer, customer
-    assert_equal "Maher", customer.last_name
-  end
-
-  def test_it_adds_customers
-    @customer = []
-    @customer << Customer.add(Customer.new(
-      :first_name => "Aimee",
-      :id         => 1,
-      :last_name  => "Maher",
-      :created_at=>"2012-03-27 14:54:09 UTC",
-      :updated_at=>"2012-03-27 14:54:09 UTC"))
-
-    @customer << Customer.add(Customer.new(
-      :first_name => "blair",
-      :id         => 2,
-      :last_name  => "anderson",
-      :created_at=>"2012-03-27 14:54:09 UTC",
-      :updated_at=>"2012-03-27 14:54:09 UTC"))
-    assert_equal 2, @customer.count
-  end
 
   def test_it_finds_by_id
     a = Customer.find_by_id("1")
@@ -109,17 +62,11 @@ class CustomerTest < MiniTest::Unit::TestCase
   end
 
   def test_it_returns_merchants_per_customer
-    MerchantLoader.from_csv
-    CustomerLoader.from_csv
-    InvoiceItemLoader.from_csv
     a = Customer.find_by_id("2").merchants_per_customer
     assert_equal 2, a["27"]
   end 
 
   def test_it_returns_sorted_merchants_per_customer
-    MerchantLoader.from_csv
-    CustomerLoader.from_csv
-    InvoiceItemLoader.from_csv
     a = Customer.find_by_id("2").sorted_merchants_per_customer
     assert_equal "27", a
   end

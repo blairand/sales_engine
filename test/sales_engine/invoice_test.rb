@@ -1,65 +1,6 @@
 require './test/sales_engine/test_helper'
 
-require './lib/sales_engine/invoice'
-
-require './lib/sales_engine/invoice_loader'
-
 class InvoiceTest < MiniTest::Unit::TestCase
-
-  def setup
-    CustomerLoader.from_csv("./test/data/short_customers.csv")
-    InvoiceLoader.from_csv("./test/data/short_invoices.csv")
-    InvoiceItemLoader.from_csv("./test/data/short_invoice_items.csv")
-    ItemLoader.from_csv("./test/data/short_items.csv")
-    TransactionLoader.from_csv("./test/data/short_transactions.csv")
-    MerchantLoader.from_csv("./test/data/short_merchants.csv")
-  end
-
-  def teardown
-    Customer.add([])
-    Invoice.add([])
-    InvoiceItem.add([])
-    Item.add([])
-    Transaction.add([])
-    Merchant.add([])
-  end
-  
-  def test_it_exists
-    invoice = Invoice.new(
-      :id=>1,
-      :customer_id=>1,
-      :merchant_id=>1,
-      :status=>'shipped',
-      :created_at=>"2012-03-27 14:54:09 UTC",
-      :updated_at=>"2012-03-27 14:54:09 UTC"    
-      )
-    assert_kind_of Invoice, invoice
-    assert_equal 1, invoice.id
-  end
-
-  def test_it_adds_invoice_items
-    @invoices = []
-    @invoices << Invoice.add(Invoice.new(
-      :id=>1,
-      :customer_id=>1,
-      :merchant_id=>1,
-      :status=>'shipped',
-      :created_at=>"2012-03-27 14:54:09 UTC",
-      :updated_at=>"2012-03-27 14:54:09 UTC"
-      ))
-
-     @invoices << Invoice.add(Invoice.new(
-      :id=>2,
-      :customer_id=>1,
-      :merchant_id=>1,
-      :status=>'shipped',
-      :created_at=>"2012-03-27 14:54:09 UTC",
-      :updated_at=>"2012-03-27 14:54:09 UTC"
-      ))
-    assert_equal 2, @invoices.count
-  end  
-
-
 
   def test_it_finds_by_id
     a = Invoice.find_by_id("1")
@@ -142,7 +83,7 @@ class InvoiceTest < MiniTest::Unit::TestCase
 
   def test_it_returns_invoice_revenue
     a = Invoice.find_by_id("1")
-    assert_equal 21067, a.invoice_revenue.to_i
+    assert_equal 2106777, a.invoice_revenue
   end
 
   def test_it_returns_invoice_unit_quantity
