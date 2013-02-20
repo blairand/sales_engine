@@ -72,7 +72,7 @@ class ItemTest < MiniTest::Unit::TestCase
   def test_it_describes_the_best_day
     item10 = Item.find_by_name "Item Accusamus Ut" 
     date10 = Date.parse "Sat, 24 Mar 2012"
-    assert_equal date10 item10.best_day
+    assert_equal date10, item10.best_day.to_date
   end
 
 end

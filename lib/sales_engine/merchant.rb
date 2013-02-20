@@ -85,17 +85,10 @@ class Merchant
   end
 
   def self.most_items(number=1)
-    sorted_list = merchant_quantity
-    sorted_list[0...number].collect do |merchant|
+    merchant_quantity[0...number].collect do |merchant|
       find_by_id(merchant[0])
     end
   end
-
-  # def self.revenue(date)
-  #   all.collect do |merchant|
-  #     merchant.revenue(date)
-  #   end.delete_if {|x| x == nil}.inject(:+)
-  # end
 
   def self.revenue(date)
     all.inject(0) do |revenue, merchant|
@@ -105,7 +98,6 @@ class Merchant
 
   def revenue(date=nil)
     revs = invoices_for_revenue(date).collect do |invoice|
-      # if invoice.invoice_revenue != nil
         invoice.invoice_revenue
     end.inject(:+) || 0  
     BigDecimal.new((revs/100.0).to_s)
