@@ -14,7 +14,7 @@ class CustomerTest < MiniTest::Unit::TestCase
 
   def test_it_finds_all_by_created_at
     a = Customer.find_all_by_created_at(Date.parse("2012-03-27 14:54:10 UTC"))
-    assert_equal 10, a.count
+    assert_equal 1000, a.count
   end
 
   def test_it_finds_by_updated_at
@@ -24,7 +24,7 @@ class CustomerTest < MiniTest::Unit::TestCase
 
   def test_it_finds_all_by_updated_at
     a = Customer.find_all_by_updated_at(Date.parse("2012-03-27 14:54:11 UTC"))
-    assert_equal 10, a.count
+    assert_equal 1000, a.count
   end
 
   def test_it_finds_by_first_name
@@ -63,7 +63,7 @@ class CustomerTest < MiniTest::Unit::TestCase
 
   def test_it_returns_merchants_per_customer
     a = Customer.find_by_id("2").merchants_per_customer
-    assert_equal 2, a["27"]
+    assert_equal 1, a["27"]
   end 
 
   def test_it_returns_sorted_merchants_per_customer
@@ -83,7 +83,7 @@ class CustomerTest < MiniTest::Unit::TestCase
     CustomerLoader.from_csv
     TransactionLoader.from_csv
     a = Customer.find_by_id("2")
-    assert_equal 2, a.transactions.count
+    assert_equal 1, a.transactions.count
   end
 
 end
