@@ -1,17 +1,14 @@
-require 'sales_engine/invoice'
-require 'sales_engine/item'
-
 module SalesEngine
 
   class InvoiceItem  
     attr_reader :id, :item_id, :invoice_id, :quantity, :unit_price, :created_at, :updated_at
 
     def initialize(input)
-      @id = input[:id]
-      @item_id = input[:item_id]
-      @invoice_id = input[:invoice_id]
-      @quantity = input[:quantity]
-      @unit_price = input[:unit_price]
+      @id = input[:id].to_i
+      @item_id = input[:item_id].to_i
+      @invoice_id = input[:invoice_id].to_i
+      @quantity = input[:quantity].to_i
+      @unit_price = input[:unit_price].to_i
       @created_at = Date.parse(input[:created_at])
       @updated_at = Date.parse(input[:updated_at])
     end

@@ -3,7 +3,7 @@ module SalesEngine
     attr_reader :id, :first_name, :last_name, :created_at, :updated_at
 
     def initialize(input)
-      @id = input[:id]
+      @id = input[:id].to_i
       @first_name = input[:first_name]
       @last_name = input[:last_name]
       @created_at = Date.parse(input[:created_at])
@@ -23,7 +23,7 @@ module SalesEngine
     end
 
     def self.find_by_id(value)
-      all.find {|record| record.id == value}
+      all.find {|record| record.id == value.to_s.to_i}
     end
 
     def self.find_by_first_name(value)
@@ -58,8 +58,8 @@ module SalesEngine
       all.find_all{|record| record.updated_at == value}
     end
 
-    def invoices
-      Invoice.find_all_by_customer_id(@id)
+    def invoices #this is an error
+      Invoice.find_all_by_customer_id(self.id)
     end
 
     def merchants_per_customer
@@ -79,12 +79,12 @@ module SalesEngine
       sorted_list.first[0]
     end
 
-    def favorite_merchant
+    def favorite_merchant # error here as well
       result = sorted_merchants_per_customer
       Merchant.find_by_id(result)
     end
 
-    def transactions
+    def transactions #error
       transaction = []
       invoices.each do |invoice| 
         if invoice.success?

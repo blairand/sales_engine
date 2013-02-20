@@ -1,15 +1,16 @@
-require 'sales_engine/transaction'
-require 'sales_engine/invoice_item'
-
 module SalesEngine
   class Invoice  
-    attr_reader :id, :customer_id, :merchant_id, :status, :created_at, :updated_at
-
+    attr_reader :id,
+                :customer_id,
+                :merchant_id,
+                :status,
+                :created_at,
+                :updated_at
 
     def initialize(input)
-      @id = input[:id]
-      @customer_id = input[:customer_id]
-      @merchant_id = input[:merchant_id]
+      @id = input[:id].to_i
+      @customer_id = input[:customer_id].to_i
+      @merchant_id = input[:merchant_id].to_i
       @status = input[:status]
       @created_at = Date.parse(input[:created_at])
       @updated_at = Date.parse(input[:updated_at])

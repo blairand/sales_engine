@@ -1,4 +1,4 @@
-require 'sales_engine/merchant.rb'
+require 'csv'
 
 module SalesEngine
   class MerchantLoader

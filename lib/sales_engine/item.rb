@@ -4,11 +4,11 @@ module SalesEngine
     attr_reader :id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at
 
     def initialize(input)
-      @id = input[:id]
+      @id = input[:id].to_i
       @name = input[:name]
       @description = input[:description]
-      @unit_price = input[:unit_price]
-      @merchant_id = input[:merchant_id]
+      @unit_price = input[:unit_price].to_i
+      @merchant_id = input[:merchant_id].to_i
       @created_at = Date.parse(input[:created_at])
       @updated_at = Date.parse(input[:updated_at])
     end

@@ -9,8 +9,8 @@ module SalesEngine
                 :updated_at
 
     def initialize(input)
-      @id = input[:id]
-      @invoice_id = input[:invoice_id]
+      @id = input[:id].to_i
+      @invoice_id = input[:invoice_id].to_i
       @credit_card_number = input[:credit_card_number]
       @credit_card_expiration_date = input[:credit_card_expiration_date]
       @result = input[:result]
@@ -29,7 +29,6 @@ module SalesEngine
         updated_at: Time.new.to_s)
 
       @transaction << new_transaction
-      puts new_transaction
     end
 
     def self.add(transactions)

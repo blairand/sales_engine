@@ -1,4 +1,4 @@
-require 'sales_engine/customer'
+require 'csv'
 
 module SalesEngine
   class CustomerLoader

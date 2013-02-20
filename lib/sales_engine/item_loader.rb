@@ -1,4 +1,4 @@
-require 'sales_engine/item.rb'
+require 'csv'
 
 module SalesEngine
   class ItemLoader

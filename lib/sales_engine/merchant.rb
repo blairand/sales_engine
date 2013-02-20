@@ -5,7 +5,7 @@ module SalesEngine
     attr_reader :id, :name, :created_at, :updated_at
 
     def initialize(input)
-      @id = input[:id]
+      @id = input[:id].to_i
       @name = input[:name]
       @created_at = Date.parse(input[:created_at])
       @updated_at = Date.parse(input[:updated_at])

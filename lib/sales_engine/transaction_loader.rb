@@ -1,4 +1,4 @@
-require 'sales_engine/transaction'
+require 'csv'
 
 module SalesEngine
   class TransactionLoader

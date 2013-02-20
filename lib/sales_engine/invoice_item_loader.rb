@@ -1,4 +1,5 @@
 require 'sales_engine/invoice_item.rb'
+require 'csv'
 
 module SalesEngine
   class InvoiceItemLoader
