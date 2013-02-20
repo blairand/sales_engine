@@ -21,3 +21,7 @@ class SalesEngine
 end
 
 SalesEngine.startup
+
+a = Invoice.find_by_id("1")
+
+puts a.id

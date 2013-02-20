@@ -1,15 +1,36 @@
 # require './lib/sales_engine/invoice'
 
 class Transaction  
-  attr_reader :id, :invoice_id, :credit_card_number, :result, :created_at, :updated_at
+  attr_reader :id, 
+              :invoice_id,
+              :credit_card_number,
+              :credit_card_expiration_date,
+              :result,
+              :created_at,
+              :updated_at
 
   def initialize(input)
     @id = input[:id]
     @invoice_id = input[:invoice_id]
     @credit_card_number = input[:credit_card_number]
+    @credit_card_expiration_date = input[:credit_card_expiration_date]
     @result = input[:result]
     @created_at = Date.parse(input[:created_at])
     @updated_at = Date.parse(input[:updated_at])
+  end
+
+  def self.create(input)
+    new_transaction = self.new(
+      id: self.count+1,
+      invoice_id: input[:invoice_id],
+      credit_card_number: input[:credit_card_number],
+      credit_card_expiration_date: input[:credit_card_expiration_date],
+      result: input[:result],
+      created_at: Time.new.to_s,
+      updated_at: Time.new.to_s)
+
+    @transaction << new_transaction
+    puts new_transaction
   end
 
   def self.add(transactions)
@@ -18,6 +39,10 @@ class Transaction
 
   def self.all
     @transaction
+  end
+
+  def self.count
+    @transaction.count
   end
 
   def self.random

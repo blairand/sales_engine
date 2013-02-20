@@ -73,4 +73,5 @@ class TransactionTest < MiniTest::Unit::TestCase
     assert_kind_of Invoice, a24
   end
 
+
 end

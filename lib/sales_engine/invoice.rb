@@ -139,6 +139,16 @@ class Invoice
     invoice_items.collect{|invoice_item| invoice_item.item}
   end
 
+  def charge(input) 
+    Transaction.create(
+      invoice_id: self.id,
+      credit_card_number: input[:credit_card_number],
+      credit_card_expiration_date: input[:credit_card_expiration_date],
+      result: input[:result],
+      created_at: Time.new.to_s,
+      updated_at: Time.new.to_s)
+  end
+
 end
 
 

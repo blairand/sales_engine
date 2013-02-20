@@ -118,5 +118,24 @@ class InvoiceTest < MiniTest::Unit::TestCase
     assert_equal customer.id, invoice.customer_id
   end
 
+  def test_creates_a_new_transaction
+    customer = Customer.find_by_id("1")
+    merchant = Merchant.find_by_id("1")
+    item1 = Item.find_by_id("1")
+    item2 = Item.find_by_id("2")
+    items = [item1,item1,item2]
+    before_count = Transaction.count
+    invoice = Invoice.create(customer: customer,
+                              merchant: merchant,
+                              status: "shipped",
+                              items: items)
+    
+    invoice.charge(credit_card_number: "4444333322221111",
+                    credit_card_expiration: "10/13",
+                    result: "success")
+    after_count = Transaction.count
+    assert_equal after_count, before_count+1
+  end
+
 
 end
