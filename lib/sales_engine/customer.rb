@@ -1,5 +1,5 @@
 module SalesEngine
-  class Customer  
+  class Customer 
     attr_reader :id, :first_name, :last_name, :created_at, :updated_at
 
     def initialize(input)
@@ -74,7 +74,7 @@ module SalesEngine
 
     def sorted_merchants_per_customer
       sorted_list = merchants_per_customer.sort_by do |merchant_id, purchases|
-        purchases 
+      purchases 
       end.reverse
       sorted_list.first[0]
     end
@@ -86,7 +86,7 @@ module SalesEngine
 
     def transactions #error
       transaction = []
-      invoices.each do |invoice| 
+      invoices.each do |invoice|
         if invoice.success?
           transaction.push(invoice.transactions)
         end

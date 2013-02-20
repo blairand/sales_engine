@@ -42,7 +42,7 @@ module SalesEngine
     def self.find_all_by_created_at(input)
       all.find_all {|record| record.created_at == input}
     end
-    
+
     def self.find_by_updated_at(input)
       all.find {|record| record.updated_at == input}
     end
@@ -100,7 +100,7 @@ module SalesEngine
     def revenue(date=nil)
       revs = invoices_for_revenue(date).collect do |invoice|
           invoice.invoice_revenue
-      end.inject(:+) || 0  
+        end.inject(:+) || 0  
       BigDecimal.new((revs/100.0).to_s)
     end
 

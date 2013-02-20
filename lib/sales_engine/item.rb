@@ -1,7 +1,12 @@
 module SalesEngine
-
   class Item  
-    attr_reader :id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at
+    attr_reader :id, 
+                :name, 
+                :description, 
+                :unit_price, 
+                :merchant_id,
+                :created_at, 
+                :updated_at
 
     def initialize(input)
       @id = input[:id].to_i
@@ -85,11 +90,8 @@ module SalesEngine
       Merchant.find_by_id(@merchant_id)
     end
 
-
-
     def self.invoice_items(input)
       items = Hash.new(0)
-
       Invoice.paid_invoices.each do |invoice|
         invoice.invoice_items.each do |invoice_item|
           item = find_by_id(invoice_item.item_id)

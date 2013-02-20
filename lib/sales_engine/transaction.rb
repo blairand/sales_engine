@@ -1,5 +1,5 @@
 module SalesEngine
-  class Transaction  
+  class Transaction
     attr_reader :id, 
                 :invoice_id,
                 :credit_card_number,
@@ -82,7 +82,7 @@ module SalesEngine
     def self.find_all_by_created_at(input)
       all.find_all {|record| record.created_at == input}
     end
-    
+
     def self.find_by_updated_at(input)
       all.find {|record| record.updated_at == input}
     end

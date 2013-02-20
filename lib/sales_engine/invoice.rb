@@ -1,5 +1,5 @@
 module SalesEngine
-  class Invoice  
+  class Invoice 
     attr_reader :id,
                 :customer_id,
                 :merchant_id,
@@ -106,13 +106,13 @@ module SalesEngine
     def self.paid_invoices
       successful_invoices = []
       all.each do |invoice|
-        if invoice.success? 
+        if invoice.success?
           successful_invoices.push(invoice)
         end
       end
       successful_invoices
     end
-      
+
     def invoice_items
       InvoiceItem.find_all_by_invoice_id(@id)
     end
@@ -121,11 +121,9 @@ module SalesEngine
         invoice_data_collector(:revenue)
     end
 
-
     def invoice_unit_quantity 
-        invoice_data_collector(:quantity)
+      invoice_data_collector(:quantity)
     end
-
 
     def invoice_data_collector(attribute)
       invoice_items.collect do |invoice_item|
