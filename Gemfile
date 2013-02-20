@@ -1,8 +1,7 @@
+
 gem 'simplecov', :require => false, :group => :test
 gem 'pry'
+gem 'cane'
+gem 'reek'
 
-# group :development do
-#   gem 'guard'
-#   gem 'rb-fsevent', '~> 0.9.1'
-#   gem 'guard-minitest'
-# end
+gemspec
