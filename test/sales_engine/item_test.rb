@@ -9,8 +9,8 @@ module SalesEngine
     end
 
     def test_it_finds_by_id
-      a = Item.find_by_id("1")
-      assert_equal "1", a.id
+      a = Item.find_by_id(1)
+      assert_equal 1, a.id
     end
 
     def test_it_finds_by_description
@@ -19,28 +19,31 @@ module SalesEngine
     end
 
     def test_it_finds_by_unit_price
-      b = Item.find_by_unit_price("32301")
-      assert_equal "32301", b.unit_price
+      price2 = BigDecimal.new("32301")/100.0
+      b = Item.find_by_unit_price(price2)
+      assert_equal price2, b.unit_price
     end
 
     def test_it_finds_all_by_unit_price
-      b = Item.find_all_by_unit_price("22582")
+      price = BigDecimal.new("22582")/100.00
+      b = Item.find_all_by_unit_price(price)
       assert_equal 1, b.count
     end
 
     def test_it_find_by_merchant_id
-      c = Item.find_by_merchant_id("1")
-      assert_equal "1", c.merchant_id
+      c = Item.find_by_merchant_id(1)
+      assert_equal 1, c.merchant_id
     end
 
     def test_it_find_all_by_merchant_id
-      c = Item.find_all_by_merchant_id("1")
+      c = Item.find_all_by_merchant_id(1)
       assert_equal 15, c.count
     end
 
     def test_it_finds_by_created_at
-      a = Item.find_by_created_at(Date.parse("2012-03-27 14:53:59 UTC"))
-      assert_equal Date.parse("2012-03-27 14:53:59 UTC"), a.created_at
+      date4 = Date.parse("2012-03-27 14:53:59 UTC")
+      a = Item.find_by_created_at(date4)
+      assert_equal date4, a.created_at
     end
 
     def test_it_finds_all_by_created_at
@@ -49,8 +52,9 @@ module SalesEngine
     end
 
     def test_it_finds_by_updated_at
-      a = Item.find_by_updated_at(Date.parse("2012-03-27 14:54:09 UTC"))
-      assert_equal Date.parse("2012-03-27 14:54:09 UTC"), a.updated_at
+      date5 = Date.parse("2012-03-27 14:54:09 UTC")
+      a = Item.find_by_updated_at(date5)
+      assert_equal date5, a.updated_at
     end
 
     def test_it_finds_all_by_updated_at

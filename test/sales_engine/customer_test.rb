@@ -4,27 +4,31 @@ module SalesEngine
   class CustomerTest < MiniTest::Unit::TestCase
 
     def test_it_finds_by_id
-      a = Customer.find_by_id("1")
-      assert_equal "1", a.id
+      a = Customer.find_by_id(1)
+      assert_equal 1, a.id
     end
 
     def test_it_finds_by_created_at
-      a = Customer.find_by_created_at(Date.parse("2012-03-27 14:54:09 UTC"))
-      assert_equal Date.parse("2012-03-27 14:54:09 UTC"), a.created_at
+      date4 = Date.parse("2012-03-27 14:54:09 UTC")
+      a = Customer.find_by_created_at(date4)
+      assert_equal date4, a.created_at
     end
 
     def test_it_finds_all_by_created_at
-      a = Customer.find_all_by_created_at(Date.parse("2012-03-27 14:54:10 UTC"))
+      date5 = Date.parse("2012-03-27 14:54:10 UTC")
+      a = Customer.find_all_by_created_at(date5)
       assert_equal 1000, a.count
     end
 
     def test_it_finds_by_updated_at
-      a = Customer.find_by_updated_at(Date.parse("2012-03-27 14:54:09 UTC"))
-      assert_equal Date.parse("2012-03-27 14:54:09 UTC"), a.updated_at
+      date6 = Date.parse("2012-03-27 14:54:09 UTC")
+      a = Customer.find_by_updated_at(date6)
+      assert_equal date6, a.updated_at
     end
 
     def test_it_finds_all_by_updated_at
-      a = Customer.find_all_by_updated_at(Date.parse("2012-03-27 14:54:11 UTC"))
+      date7 = Date.parse("2012-03-27 14:54:11 UTC")
+      a = Customer.find_all_by_updated_at(date7)
       assert_equal 1000, a.count
     end
 
@@ -55,20 +59,20 @@ module SalesEngine
     end
     
     def test_it_returns_invoices_for_a_customer_instance
-      a = Customer.find_by_id("1")
+      a = Customer.find_by_id(1)
       b = a.invoices
       assert_equal 8, b.count
-      assert_equal "1", b.first.id
-      assert_equal "1", a.id
+      assert_equal 1, b.first.id
+      assert_equal 1, a.id
     end
 
     def test_it_returns_merchants_per_customer
-      a = Customer.find_by_id("2").merchants_per_customer
+      a = Customer.find_by_id(2).merchants_per_customer
       assert_equal 1, a["27"]
     end 
 
     def test_it_returns_sorted_merchants_per_customer
-      a = Customer.find_by_id("2").sorted_merchants_per_customer
+      a = Customer.find_by_id(2).sorted_merchants_per_customer
       assert_equal "27", a
     end
 
@@ -76,14 +80,14 @@ module SalesEngine
       MerchantLoader.from_csv
       CustomerLoader.from_csv
       InvoiceItemLoader.from_csv
-      a = Customer.find_by_id("2").favorite_merchant
+      a = Customer.find_by_id(2).favorite_merchant
       assert_equal "Shields, Hirthe and Smith", a.name
     end
     
     def test_it_returns_transactions
       CustomerLoader.from_csv
       TransactionLoader.from_csv
-      a = Customer.find_by_id("2")
+      a = Customer.find_by_id(1)
       assert_equal 1, a.transactions.count
     end
 

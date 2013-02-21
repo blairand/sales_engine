@@ -114,7 +114,7 @@ module SalesEngine
     end
 
     def self.sort_list(items,number_of_results)
-      items.sort_by {|k,v| -v}.map{|x| x[0]}.take(number_of_results)
+      i = items.sort_by {|k,v| -v}.map{|x| x[0]}.take(number_of_results)
     end
 
     def self.most_revenue(number=1)

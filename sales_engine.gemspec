@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'sales_engine/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "sales_engine"
-  gem.version       = SalesEngine::VERSION
+  gem.version       = "1.0"
   gem.authors       = ["Blair Anderson","Aimee Maher"]
   gem.email         = ["blair81@gmail.com", "aimee@geekycheeks.com"]
   gem.description   = %q{Sales Engine is a gschool class project}

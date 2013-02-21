@@ -10,27 +10,27 @@ module SalesEngine
     end
 
     def test_it_finds_item_id
-      ii1 = InvoiceItem.find_by_item_id("539")
-      assert_equal "539", ii1.item_id
+      ii1 = InvoiceItem.find_by_item_id(539)
+      assert_equal 539, ii1.item_id
     end
 
     def test_it_finds_all_by_item_id
-      ii2 = InvoiceItem.find_all_by_item_id("1832")
+      ii2 = InvoiceItem.find_all_by_item_id(1832)
       assert_equal 4, ii2.count
     end
 
     def test_it_finds_by_id
-      ii3 = InvoiceItem.find_by_id("1")
-      assert_equal "1", ii3.id
+      ii3 = InvoiceItem.find_by_id(1)
+      assert_equal 1, ii3.id
     end
 
     def test_it_finds_by_invoice_id
-      ii4 = InvoiceItem.find_by_invoice_id("1")
-      assert_equal "1", ii4.invoice_id
+      ii4 = InvoiceItem.find_by_invoice_id(1)
+      assert_equal 1, ii4.invoice_id
     end
 
     def test_it_finds_all_by_invoice_id
-      ii5 = InvoiceItem.find_all_by_invoice_id("2")
+      ii5 = InvoiceItem.find_all_by_invoice_id(2)
       assert_equal 4, ii5.count
     end
 
@@ -45,8 +45,8 @@ module SalesEngine
     end
 
     def test_it_find_by_unit_price
-      ii8 = InvoiceItem.find_by_unit_price("29973")
-      assert_equal "29973", ii8.unit_price
+      ii8 = InvoiceItem.find_by_unit_price(BigDecimal.new("29973")/100.0)
+      assert_equal BigDecimal.new("29973")/100.0, ii8.unit_price
     end
 
     def test_it_find_all_by_unit_price
@@ -79,23 +79,23 @@ module SalesEngine
     end
 
     def test_invoice_relationship
-      ii14 = InvoiceItem.find_by_id("16934")
+      ii14 = InvoiceItem.find_by_id(16934)
       assert_equal "16934", ii14.id
     end
 
     def test_returns_item
-      ii15 = InvoiceItem.find_by_id("16934")
+      ii15 = InvoiceItem.find_by_id(16934)
       assert_equal "Item Cupiditate Magni", ii15.item.name
     end
 
     def test_it_returns_invoice_item_revenue
-      ii16 = InvoiceItem.find_by_id("2")
+      ii16 = InvoiceItem.find_by_id(2)
       assert_equal 209916, ii16.revenue
     end
 
     def test_creating_a_new_invoice
-      item1 = Item.find_by_id("1")
-      item2 = Item.find_by_id("2") 
+      item1 = Item.find_by_id(1)
+      item2 = Item.find_by_id(2) 
       items = [item1,item1,item2]
       before_count = InvoiceItem.count
       invoice_item = InvoiceItem.create(items,1234)
