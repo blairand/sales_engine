@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 require "bundler/gem_tasks"
 
 require 'rake/testtask'
@@ -6,7 +5,7 @@ require 'rake/testtask'
 Rake::TestTask.new do |t|
   t.pattern = "test/**/*_test.rb"
 end
-=======
+
 namespace :sanitation do
   desc "Check line lengths & whitespace with Cane"
   task :lines do
@@ -29,4 +28,3 @@ namespace :sanitation do
   desc "Check both line length and method length"
   task :all => [:lines, :methods]
 end
->>>>>>> 22f0c8eed3c61535b92b0598cf6b3601800f88a8
